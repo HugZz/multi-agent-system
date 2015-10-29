@@ -10,8 +10,11 @@ public class TestGUI {
 		ig.addGraphicalElement(new Rectangle(90, 40, Color.WHITE, Color.WHITE, 10));
 		ig.addGraphicalElement(new Rectangle(100, 40, Color.WHITE, Color.WHITE, 10));
 		ig.addGraphicalElement(new Rectangle(110, 40, Color.WHITE, Color.WHITE, 10));
+<<<<<<< HEAD
 		ig.addGraphicalElement(new Oval(110, 200, Color.WHITE, Color.RED, 10));
 
+=======
+>>>>>>> 0fc5ea9e7d4b84a2537eb38ad6520264cf1fa565
 		
 		ig.addGraphicalElement(new Rectangle(80, 50, Color.WHITE, Color.WHITE, 10));
 		ig.addGraphicalElement(new Rectangle(90, 50, Color.WHITE, Color.WHITE, 10));
