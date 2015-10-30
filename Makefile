@@ -33,6 +33,8 @@ testGUI1:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestGUI1.java
 testCellules:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/cellules src/cellules/TestCellules.java
+testGUICellules:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/cellules src/cellules/TestGUICellules.java
 
 all: testGUI testBalls testBallsSimulator testGUI1 testCellules
 
@@ -51,6 +53,8 @@ exeTestGUI1:
 	java -classpath bin:bin/gui.jar TestGUI1
 exeTestCellules:
 	java -classpath bin:bin/gui.jar TestCellules
+exeTestGUICellules:
+	java -classpath bin:bin/gui.jar TestGUICellules
 
 clean:
 	rm -rf bin/*.class
