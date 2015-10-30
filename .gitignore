@@ -4,6 +4,6 @@ bin
 .DS_Store
 .swn
 .swo
-.swp
-tpl_java
+*.swp
+*.class
 
