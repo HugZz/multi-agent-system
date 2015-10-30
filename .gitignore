@@ -1,9 +1,9 @@
-./doc
-./doc_gui
-./bin
-./.DS_Store
-./.swn
-./.swo
-./.swp
-./tpl_java
+doc
+doc_gui
+bin
+.DS_Store
+.swn
+.swo
+.swp
+tpl_java
 
