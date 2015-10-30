@@ -1,11 +1,19 @@
 import java.awt.Point;
+/**
+ * Cette classe permet de créer une grille contenant (true ou false pour la v1.0)
+ * Ce que contient chaque cellule peut être affichier textuelement
+ * Mais peut aussi bien faire l'objet d'une simulation graphique grace à la classe CellulesSimulator
+ * La densiteAleatoire doit être un entier positif compris entre 0 et 100i (% de case Vivante)
+ * @see CellulesSimulator
+ */
 public class Cellules {
     private boolean [][] grille;
     private boolean [][] tmpGrille;
     private int nbL;
     private int nbC;
+    private static int densiteAleatoire = 50;
 /**
- * Constructeur
+ * Constructeur de Cellules : créer une grille de n*m cellules, instancie les attribue nbL et nbC, et trouve une combinaison aléatoire pour remplir la grille. 
  * @param n
  *      nbr de lignes
  * @param m
@@ -16,10 +24,14 @@ public class Cellules {
         for(int i=0; i<n; i++){
             g[i] = new boolean[m];
         }
+        boolean[][] tmpG = new boolean [n][];
+        for(int i=0; i<n; i++){
+            tmpG[i] = new boolean[m];
+        }
         this.setNbL(n);
         this.setNbC(m);
         this.setGrille(g);
-        this.setTmpGrille(g);
+        this.setTmpGrille(tmpG);
         this.reInit();
     }
 
@@ -52,8 +64,8 @@ public class Cellules {
      * @param g
      *      Tableau 2D de boolean
      */
-    public void setTmpGrille(boolean[][] g){
-        this.tmpGrille = g;
+    public void setTmpGrille(boolean[][] tmpG){
+        this.tmpGrille = tmpG;
     }
     /**
      *Getter à l'attribut nbL de Cellules
@@ -181,7 +193,6 @@ public class Cellules {
             }
         }
         //Mtn que la grille tmp contient toutes les mise à jours de grille, on va pouvoir faire la copie de tmp dans grille.
-
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
                 this.setCellule(i, k, this.getTmpCellule(i, k));
@@ -196,7 +207,7 @@ public class Cellules {
         boolean b = true;
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
-                b = (boolean)((Math.random())>=0.5);
+                b = (boolean)(((int)((Math.random())*100))<=densiteAleatoire);
                 this.setCellule(i, k, b);
                 this.setTmpCellule(i, k, b);
             }
