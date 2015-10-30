@@ -21,17 +21,17 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testGUI testBalls testBallsSimulator
+all: testGUI testBalls testBallsSimulator testGUI1
 
 testGUI:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI.java
 testBalls:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBalls.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestBalls.java
 testBallsSimulator:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestBallsSimulator.java
 testGUI1:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI1.java
-all: testGUI 
+	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestGUI1.java
+all: testGUI testBalls testBallsSimulator testGUI1
 
 # Execution:
 # on peut taper directement la ligne de commande :
