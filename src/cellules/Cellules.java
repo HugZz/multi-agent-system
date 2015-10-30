@@ -13,13 +13,15 @@ public class Cellules {
     private int nbC;
     private static int densiteAleatoire = 50;
 /**
- * Constructeur de Cellules : créer une grille de n*m cellules, instancie les attribue nbL et nbC, et trouve une combinaison aléatoire pour remplir la grille. 
+ * Constructeur de Cellules : créer une grille de n*m cellules, instancie les attribue nbL et nbC, et trouve une combinaison aléatoire pour remplir la grille en respectant le pourcentage de cases vivantes 
  * @param n
  *      nbr de lignes
  * @param m
  *      nbr de colonnes
+ * @param d
+ *      pourcentage de repartition initial de case vivante sur l'ecran
  */
-    public Cellules(int n, int m){ 
+    public Cellules(int n, int m, int d){ 
         boolean[][] g = new boolean [n][];
         for(int i=0; i<n; i++){
             g[i] = new boolean[m];
@@ -32,9 +34,8 @@ public class Cellules {
         this.setNbC(m);
         this.setGrille(g);
         this.setTmpGrille(tmpG);
-        this.reInit();
+        this.reInit(d);
     }
-
     /**
      * Adder
      * @param n
@@ -203,11 +204,11 @@ public class Cellules {
     /**
      * Remplie la grille aléatoirement avec des true et des false
      */
-    public void reInit(){
+    public void reInit(int d){
         boolean b = true;
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
-                b = (boolean)(((int)((Math.random())*100))<=densiteAleatoire);
+                b = (boolean)(((int)((Math.random())*100)) <= d);
                 this.setCellule(i, k, b);
                 this.setTmpCellule(i, k, b);
             }
