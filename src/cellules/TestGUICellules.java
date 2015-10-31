@@ -12,7 +12,7 @@ public class TestGUICellules {
             int nbLignes = 0;
             int nbColonnes = 0;
             int d = 0;
-        if (args.length == 3) {
+        if (args.length > 2) {
             nbLignes = Integer.parseInt(args[0]); 
             nbColonnes = Integer.parseInt(args[1]);
             d = Integer.parseInt(args[2]);

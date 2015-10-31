@@ -52,9 +52,9 @@ exeTestBallsSimulator:
 exeTestGUI1:
 	java -classpath bin:bin/gui.jar TestGUI1
 exeTestCellules:
-	java -classpath bin:bin/gui.jar TestCellules
+	java -classpath bin:bin/gui.jar TestCellules $(ARG1) $(ARG2) $(ARG3)
 exeTestGUICellules:
-	java -classpath bin:bin/gui.jar TestGUICellules
+	java -classpath bin:bin/gui.jar TestGUICellules $(ARG1) $(ARG2) $(ARG3)
 
 clean:
 	rm -rf bin/*.class
