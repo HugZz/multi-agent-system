@@ -5,7 +5,8 @@ import java.awt.Color;
  * Elle créer une fenêtre de simulation,
  * et à chaque appuie sur next, elle affichera dans le TERMINALE 
  * l'état de chaque cellule de la grille ''true'' or ''false''
- * pour l'executer, lancer : " java -classpath bin:bin/gui.jar TestCellules arg1 arg2 arg3 " avec : 
+ * pour l'executer, lancer : " make testGUICellules ARG1=(int) ARG2=(int) ARG3=(int) " avec : 
+ * arg1 = (int) nombre de lignes souhaitées
  * arg1 = (int) nombre de lignes souhaitées
  * arg2 = (int) nombre de colonnes souhaitées
  * arg3 = (int) pourcentage de case vivante à la création de la grille
