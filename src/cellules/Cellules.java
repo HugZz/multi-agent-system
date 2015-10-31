@@ -3,7 +3,7 @@ import java.awt.Point;
  * Cette classe permet de créer une grille contenant (true ou false pour la v1.0)
  * Ce que contient chaque cellule peut être affichier textuelement
  * Mais peut aussi bien faire l'objet d'une simulation graphique grace à la classe CellulesSimulator
- * La densiteAleatoire doit être un entier positif compris entre 0 et 100i (% de case Vivante)
+ * La densiteAleatoire doit être un entier positif compris entre 0 et 100 (% de case Vivante)
  * @see CellulesSimulator
  */
 public class Cellules {
