@@ -2,7 +2,7 @@ import gui.*;
 import java.awt.Color;
 /**
  * Classe test du " jeu de la vie de conway"
- * pour l'executer, lancer : " java -classpath bin:bin/gui.jar TestGUICellules arg1 arg2 arg3 " avec : 
+ * pour l'executer, lancer : " make exeTestGUICellules ARG1=(int) ARG2=(int) ARG3=(int) " avec : 
  * arg1 = (int) nombre de lignes souhaitées
  * arg2 = (int) nombre de colonnes souhaitées
  * arg3 = (int) pourcentage de case vivante à la création de la grille
