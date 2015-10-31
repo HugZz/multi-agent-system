@@ -1,40 +1,52 @@
 import java.awt.Point;
+import java.util.Random;
 /**
- * Cette classe permet de créer une grille contenant (true ou false pour la v1.0)
- * Ce que contient chaque cellule peut être affichier textuelement
+ * Cette classe permet de créer une grille contenant une valeur (int) correspondant à sont etat
+ * Ce que contient chaque cellule peut être afficher textuelement
  * Mais peut aussi bien faire l'objet d'une simulation graphique grace à la classe CellulesSimulator
- * La densiteAleatoire doit être un entier positif compris entre 0 et 100 (% de case Vivante)
  * @see CellulesSimulator
  */
 public class Cellules {
-    private boolean [][] grille;
-    private boolean [][] tmpGrille;
+    private int [][] grille;
+    private int [][] tmpGrille;
     private int nbL;
     private int nbC;
-    private static int densiteAleatoire = 50;
+    private int nbEtats;
 /**
- * Constructeur de Cellules : créer une grille de n*m cellules, instancie les attribue nbL et nbC, et trouve une combinaison aléatoire pour remplir la grille en respectant le pourcentage de cases vivantes 
+ * Constructeur de Cellules : créer une grille de n*m cellules, instancie les attribues nbL à n et nbC à m, et affecte à chaque cellule 1 état parmi ne 
  * @param n
  *      nbr de lignes
  * @param m
  *      nbr de colonnes
- * @param d
- *      pourcentage de repartition initial de case vivante sur l'ecran
+ * @param ne
+ *      nbr de d'état que peut prendre une cellule    (1 < ne <=10)
+ * @trows Attention 1 < ne <= 10
  */
-    public Cellules(int n, int m, int d){ 
-        boolean[][] g = new boolean [n][];
-        for(int i=0; i<n; i++){
-            g[i] = new boolean[m];
+    public Cellules(int n, int m, int ne){ 
+        if (n<=0) {
+            throw new RuntimeException("Attention le nombre de ligne doit être positif !!!");
         }
-        boolean[][] tmpG = new boolean [n][];
+        if (m<=0) {
+            throw new RuntimeException("Attention le nombre de colonnes doit être positif");
+        }
+        if (ne<=1 || ne>10 ) {
+            throw new RuntimeException("Attention le nombre d'état peut être uniquement dans ]1:10] !!!");
+        }
+        int[][] g = new int [n][];
         for(int i=0; i<n; i++){
-            tmpG[i] = new boolean[m];
+            g[i] = new int[m];
+        }
+        int[][] tmpG = new int [n][];
+        for(int i=0; i<n; i++){
+            tmpG[i] = new int[m];
         }
         this.setNbL(n);
         this.setNbC(m);
+        this.setNbEtats(ne);
+        this.setLEtats(le);
         this.setGrille(g);
         this.setTmpGrille(tmpG);
-        this.reInit(d);
+        this.reInit();
     }
     /**
      * Adder
@@ -83,18 +95,31 @@ public class Cellules {
     /**
      *Accesseur à l'attribut grille de Cellules
      */
-    public boolean[][] getGrille(){
+    public int[][] getGrille(){
         return this.grille;
     }
     /**
      *Accesseur à l'attribut TmGgrille de Cellules
      */
-    public boolean[][] getTmpGrille(){
+    public int[][] getTmpGrille(){
         return this.tmpGrille;
     }
-
     /**
-     * Changer l'état de la cellule (i,k) de la grille principale  à e 
+     * Adder du nombre d'état possible par case
+     * @param ne
+     *      nombre d'état par possible par cellule 
+     */
+    public void setNbEtats(int ne){
+        this.nbEtats = ne;
+    }
+    /**
+     *Getter à l'attribut nbEtat de Cellules
+     */
+    public int getNbEtats(){
+        return this.nbEtats;
+    }
+         /**
+     * Changer l'état de la cellule (i,k) de la grille principale à e 
      * @param i
      *      Numero de la ligne dont on desire connaitre l'état
      * @param k
@@ -102,7 +127,7 @@ public class Cellules {
      * @param e
      *      Nouvelle état de la cellule (i,k)
      */
-    public void setCellule (int i, int k, boolean e) {
+    public void setCellule (int i, int k, int e) {
         this.getGrille()[i][k] = e;
     }
     /**
@@ -114,35 +139,36 @@ public class Cellules {
      * @param e
      *      Nouvelle état de la cellule (i,k)
      */
-    public void setTmpCellule (int i, int k, boolean e) {
+    public void setTmpCellule (int i, int k, int e) {
         this.getTmpGrille()[i][k] = e;
     }
     /**
-     * Donne la valeur de la cellule (i,k) de la grille temporaire 
+     * Donne l'état de la cellule (i,k) de la grille temporaire 
      * @param i
      *      Numero de la ligne dont on desire connaitre l'état
      * @param k
      *      Numero de la colonne dont on desire connaitre l'état
      */
-    public boolean getTmpCellule(int i,int k) {
+    public int getTmpCellule(int i,int k) {
         return (this.getTmpGrille()[i][k]); 
     }
     /**
-     * Donne la valeur de la cellule (i,k) de la grille principale
+     * Donne l'état de la cellule (i,k) de la grille principale
      * @param i
      *      Numero de la ligne dont on desire connaitre l'état
      * @param k
      *      Numero de la collone dont on desire connaitre l'état
      */
-    public boolean getCellule(int i,int k) {
+    public int getCellule(int i,int k) {
         return (this.getGrille()[i][k]); 
     }
     /**
-     * Donne ne nombre de voisin à la cellule (i,k)
+     * Donne ne nombre de voisin à l'état '(e+1)%nbEtat' de la cellule (i,k) dans l'état 'e'
      * @param i
      *      ligne de la cellule
      * @param k
      *      colonne de la cellule
+     * @return nombre de voisin dans l'état '(e+1)%nbEtat'
      */
     public int nbVoisin(int i, int k){
         int cpt = 0;
@@ -150,46 +176,41 @@ public class Cellules {
         int h = i+1;
         int d = k+1;
         int g = k-1;
+        int etat = 0;
+        int n = 0;
+        etat = this.getCellule(i,k);
+        n = this.getNbEtat();
         if( i==0 ) { b = (this.getNbL()-1);}
         if( i==this.getNbL()-1 ) { h = 0;}
         if( k==0) { g = (this.getNbC()-1);}
         if( k==this.getNbC()-1 ) { d = 0;}
-        if ( this.getCellule(b,g) ) cpt++;
-        if ( this.getCellule(i,g) ) cpt++;
-        if ( this.getCellule(h,g) ) cpt++;
-        if ( this.getCellule(b,k) ) cpt++;
-        if ( this.getCellule(h,k) ) cpt++;
-        if ( this.getCellule(b,d) ) cpt++;
-        if ( this.getCellule(i,d) ) cpt++;
-        if ( this.getCellule(h,d) ) cpt++;
+        if ( this.getCellule(b,g) == (etat+1)%n ) cpt++;
+        if ( this.getCellule(i,g) == (etat+1)%n ) cpt++;
+        if ( this.getCellule(h,g) == (etat+1)%n ) cpt++;
+        if ( this.getCellule(b,k) == (etat+1)%n ) cpt++;
+        if ( this.getCellule(h,k) == (etat+1)%n ) cpt++;
+        if ( this.getCellule(b,d) == (etat+1)%n ) cpt++;
+        if ( this.getCellule(i,d) == (etat+1)%n ) cpt++;
+        if ( this.getCellule(h,d) == (etat+1)%n ) cpt++;
         return cpt;
     }
 
     /**
+     * Méthode qui permet de modifier la valeur de chaque cellule en fonction de la règle de jeu donnée.
+     * C'est ce qui est fait entre chaque itération
      */
     public void actualiser (){
         int voisin = 0;
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
                 voisin = this.nbVoisin(i,k);
-                //Cellule vivant reste en vie SSI elle a deux ou trois voisin, sinon meurt
+                //Cellule dans l'état e passe à l'état e+1 SSI elle à au moins 3 voisins dans cette état
                 //On met ces valeurs dans le tableau tmp pour le moment
-                if( getCellule(i,k) ){
-                    if(voisin==2 || voisin==3){
-                        this.setTmpCellule(i,k,true);
-                    }
-                    else {
-                        this.setTmpCellule(i,k,false);
-                    }
+                if( voisin >= 3){
+                    this.setTmpCellule(i, k, (this.getCellule()+1)%this.getNbEtat());
                 }
-                //Si la cellule est morte elle née SSI elle a exactement 3 voisins
-                else {
-                    if(voisin == 3){
-                        this.setTmpCellule(i,k,true);
-                    } 
-                    else{
-                        this.setTmpCellule(i,k,false);
-                    }
+                else{
+                    this.setTmpCellule(i, k, this.getCellule());
                 }
             }
         }
@@ -202,15 +223,16 @@ public class Cellules {
     }
 
     /**
-     * Remplie la grille aléatoirement avec des true et des false
+     * Affecte à chaque cellule un état parmi nbEtat de façon aléatoire et équiprobable pour chaque cellule
      */
-    public void reInit(int d){
-        boolean b = true;
+    public void reInit(){
+        int c = 0;
+        Random r;
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
-                b = (boolean)(((int)((Math.random())*100)) <= d);
-                this.setCellule(i, k, b);
-                this.setTmpCellule(i, k, b);
+                c = r.nextInt(this.getNbEtats());
+                this.setCellule(i, k, c);
+                this.setTmpCellule(i, k, c);
             }
         }
     }
