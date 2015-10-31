@@ -32,9 +32,9 @@ testBallsSimulator:
 testGUI1:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestGUI1.java
 testCellules:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/cellules src/cellules/TestCellules.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuDeLaVie src/jeuDeLaVie/TestCellules.java
 testGUICellules:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/cellules src/cellules/TestGUICellules.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuDeLaVie src/jeuDeLaVie/TestGUICellules.java
 testCellules2:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuImmigration src/jeuImmigration/TestCellules2.java
 testGUICellules2:
