@@ -35,6 +35,10 @@ testCellules:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/cellules src/cellules/TestCellules.java
 testGUICellules:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/cellules src/cellules/TestGUICellules.java
+testCellules2:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuImmigration src/jeuImmigration/TestCellules2.java
+testGUICellules2:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuImmigration src/jeuImmigration/TestGUICellules2.java
 
 all: testGUI testBalls testBallsSimulator testGUI1 testCellules
 
@@ -55,6 +59,10 @@ exeTestCellules:
 	java -classpath bin:bin/gui.jar TestCellules $(ARG1) $(ARG2) $(ARG3)
 exeTestGUICellules:
 	java -classpath bin:bin/gui.jar TestGUICellules $(ARG1) $(ARG2) $(ARG3)
+exeTestCellules2:
+	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1) $(ARG2) $(ARG3)
+exeTestGUICellules2:
+	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1) $(ARG2) $(ARG3)
 
 clean:
 	rm -rf bin/*.class
