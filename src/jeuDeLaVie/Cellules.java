@@ -138,7 +138,7 @@ public class Cellules {
         return (this.getGrille()[i][k]); 
     }
     /**
-     * Donne ne nombre de voisin à la cellule (i,k)
+     * Donne le nombre de voisin à la cellule (i,k)
      * @param i
      *      ligne de la cellule
      * @param k
