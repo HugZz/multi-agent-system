@@ -39,6 +39,10 @@ testCellules2:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuImmigration src/jeuImmigration/TestCellules2.java
 testGUICellules2:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuImmigration src/jeuImmigration/TestGUICellules2.java
+testHabitations:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/segregation src/segregation/TestHabitations.java
+testGUIHabitations:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/segregation src/segregation/TestGUIHabitations.java
 testGUIBoids:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/boids src/boids/TestGUIBoids.java
 
@@ -65,6 +69,10 @@ exeTestCellules2:
 	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1) $(ARG2) $(ARG3)
 exeTestGUICellules2:
 	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1) $(ARG2) $(ARG3)
+exeTestHabitations:
+	java -classpath bin:bin/gui.jar TestHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
+exeTestGUIHabitations:
+	java -classpath bin:bin/gui.jar TestGUIHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
 exeTestGUIBoids:
 	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1) $(ARG2) $(ARG3)
 

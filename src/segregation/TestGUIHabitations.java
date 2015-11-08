@@ -7,24 +7,26 @@ import java.awt.Color;
  * arg2 = (int) nombre de colonnes souhaitées
  * arg3 = (int) pourcentage de case vivante à la création de la grille
  */
-public class TestGUICellules2 {
+public class TestGUIHabitations {
     public static void main (String [] args ){
         int nbLignes = 50;
         int nbColonnes = 50;
         int largeur = 500;
         int hauteur = 500;
-        int ne = 5;
-        if (args.length == 3) {
+        int ne = 2;
+        int k = 7;
+        if (args.length == 4) {
             nbLignes = Integer.parseInt(args[0]); 
             nbColonnes = Integer.parseInt(args[1]);
             ne = Integer.parseInt(args[2]);
+            k = Integer.parseInt(args[3]);
         }
         else {
-            System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le nombre d'états (int)"); 
+            System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le nombre d'états (int) \n le paramètre de ségregation (int)\n"); 
         }
         GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
         
-        CellulesSimulator2 jvc = new CellulesSimulator2(nbLignes, nbColonnes ,largeur/nbLignes, ne, window); 
+        HabitationsSimulator jvc = new HabitationsSimulator(nbLignes, nbColonnes ,largeur/nbLignes, ne, k, window); 
 
         window.setSimulable(jvc);
     }
