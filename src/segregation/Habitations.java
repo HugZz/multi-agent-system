@@ -237,6 +237,8 @@ public class Habitations {
      */
     public void actualiser (){
         int voisinDiff = 0;
+        int c = 0;
+        Random r = new Random();
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
                 voisinDiff = this.nbVoisin(i,k);
@@ -244,6 +246,7 @@ public class Habitations {
                 // Si l'habitation de couleur considérée ( != -1 ) a plus de K voisins
                 // différents, elle déménage.
                 if(voisinDiff > this.getK() && this.getCellule(i, k) != -1) {
+                    c = r.nextInt(this.getVac().size());
                     //System.out.printf("Ségrégation !\n");
                     //System.out.printf("à déménager : i = %d, k = %d\n", i, k);
                     // L'habitation devient vacante sur la grille.
@@ -251,7 +254,7 @@ public class Habitations {
                     // On prend le premier élément de la liste des habitations vacantes,
                     // et on déplace l'habitation.
                     //System.out.println("Etat des vacants avant le pop : \n" + this.getVac());
-                    Point nlleMaison = new Point(this.getVac().pop());
+                    Point nlleMaison = new Point(this.getVac().remove(c));
                     //System.out.printf("à emménager : i = %d, k = %d\n", (int)nlleMaison.getX(), (int)nlleMaison.getY());
                     this.setTmpCellule((int)nlleMaison.getX(), (int)nlleMaison.getY(), this.getCellule(i,k));
                     // On ajoute l'habitation à la liste chainée.
