@@ -4,7 +4,7 @@ import java.util.LinkedList;
 /**
  * Cette classe permet de créer une grille dont chaque habitation contient une valeur (int) correspondant à sa couleur
  * Une habitation de couleur = -1 signifie qu'elle est vacante
- * Ce que contient chaque cellule peut être afficher textuelement
+ * Ce que contient chaque cellule peut être affiché textuellement
  * Mais peut aussi bien faire l'objet d'une simulation graphique grace à la classe HabitationSimulator
  * @see HabitationsSimulator
  */
@@ -58,16 +58,16 @@ public class Habitations {
     }
     /**
      * Getter
-     * @param k
-     *      on fixe le paramètre k
+     * @param vacants
+     *      on obtient la liste des vacants
      */
     public LinkedList<Point> getVac(){
         return this.vacants;
     }
     /**
      * Adder
-     * @param k
-     *      on fixe le paramètre k
+     * @param vacants
+     *      on fixe le paramètre vacants
      */
     public void setVac(LinkedList<Point> vacants){
         this.vacants = vacants;
@@ -215,9 +215,7 @@ public class Habitations {
         int d = k+1;
         int g = k-1;
         int etat = 0;
-        int n = 0;
         etat = this.getCellule(i,k);
-        n = this.getNbEtats();
         if( i==0 ) { b = (this.getNbL()-1);}
         if( i==this.getNbL()-1 ) { h = 0;}
         if( k==0) { g = (this.getNbC()-1);}
@@ -242,14 +240,24 @@ public class Habitations {
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
                 voisinDiff = this.nbVoisin(i,k);
-                System.out.printf("Voisins différents : %d\n", voisinDiff);
 
+                // Si l'habitation de couleur considérée ( != -1 ) a plus de K voisins
+                // différents, elle déménage.
                 if(voisinDiff > this.getK() && this.getCellule(i, k) != -1) {
-                    System.out.printf("i = %d, k = %d\n", i, k);
+                    System.out.printf("Ségrégation !\n");
+                    System.out.printf("à déménager : i = %d, k = %d\n", i, k);
+                    // L'habitation devient vacante sur la grille.
                     this.setTmpCellule(i, k, -1);
-                    this.setTmpCellule((int)this.getVac().getFirst().getX(), (int)this.getVac().getFirst().getY(), this.getCellule(i,k));
-                    this.getVac().remove();
+                    // On prend le premier élément de la liste des habitations vacantes,
+                    // et on déplace l'habitation.
+                    System.out.println("Etat des vacants avant le pop : \n" + this.getVac());
+                    Point nlleMaison = new Point(this.getVac().pop());
+                    System.out.printf("à emménager : i = %d, k = %d\n", (int)nlleMaison.getX(), (int)nlleMaison.getY());
+                    this.setTmpCellule((int)nlleMaison.getX(), (int)nlleMaison.getY(), this.getCellule(i,k));
+                    // On ajoute l'habitation à la liste chainée.
+                    System.out.println("Etat des vacants après le pop : \n" + this.getVac());
                     this.getVac().add(new Point(i, k));
+                    System.out.println("Etat des vacants après le add : \n" + this.getVac());
                 }
             }
         }
@@ -275,9 +283,13 @@ public class Habitations {
                 this.setTmpCellule(i, k, c);
             }
         }
-        this.setCellule(0, 0, -1);
-        this.setTmpCellule(0, 0, -1);
-        this.getVac().add(new Point(0, 0));
+        // On met des cases vacantes par défaut.
+        for(int i = 0; i < 50; i++) {
+            this.setCellule(i, 0, -1);
+            this.setTmpCellule(i, 0, -1);
+            this.getVac().add(new Point(i, 0));
+        }
+        System.out.println("Etat des vacants après l'init : \n" + this.getVac());
     }
     
     @Override

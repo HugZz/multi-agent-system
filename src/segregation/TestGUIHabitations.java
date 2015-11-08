@@ -14,7 +14,7 @@ public class TestGUIHabitations {
         int largeur = 500;
         int hauteur = 500;
         int ne = 2;
-        int k = 7;
+        int k = 3;
         if (args.length == 4) {
             nbLignes = Integer.parseInt(args[0]); 
             nbColonnes = Integer.parseInt(args[1]);
@@ -25,8 +25,9 @@ public class TestGUIHabitations {
             System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le nombre d'états (int) \n le paramètre de ségregation (int)\n"); 
         }
         GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
+        //window.addGraphicalElement(new Rectangle(0, 90, Color.BLACK, Color.BLACK, 10));
         
-        HabitationsSimulator jvc = new HabitationsSimulator(nbLignes, nbColonnes ,largeur/nbLignes, ne, k, window); 
+        HabitationsSimulator jvc = new HabitationsSimulator(nbColonnes, nbLignes,largeur/nbLignes, ne, k, window); 
 
         window.setSimulable(jvc);
     }

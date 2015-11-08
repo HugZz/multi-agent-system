@@ -108,9 +108,9 @@ public class HabitationsSimulator implements gui.Simulable {
      *      Couleur correspondante à cet état
      */
     public Color getColorEtat(int e){
-        if( e == -1 ) { return Color.BLACK;}
+        if( e == -1 ) { return Color.BLUE;}
         if( e == 0 ) { return Color.WHITE;}
-        if( e == 1 ) { return Color.BLUE;}
+        if( e == 1 ) { return Color.BLACK;}
         if( e == 2 ) { return Color.RED;}
         if( e == 3 ) { return Color.YELLOW;}
         if( e == 4 ) { return Color.GREEN;}
@@ -130,9 +130,9 @@ public class HabitationsSimulator implements gui.Simulable {
     public void affiche() {
         Color c = new Color(0,0,0);
         for(int i=0; i<(this.getPlateau().getNbL()); i++){
-            for(int k=0; k<(getPlateau().getNbL()); k++){
+            for(int k=0; k<(getPlateau().getNbC()); k++){
                 c = this.getColorEtat(this.getPlateau().getCellule(i, k));
-                this.getGUIPlateau().addGraphicalElement( new Rectangle(tailleCellule*i+tailleCellule/2,tailleCellule*k+tailleCellule/2, c, c, this.getTailleCellule()) );
+                this.getGUIPlateau().addGraphicalElement( new Rectangle(tailleCellule*k+tailleCellule/2,tailleCellule*i+tailleCellule/2, c, c, this.getTailleCellule()) );
             }
         }
     }
