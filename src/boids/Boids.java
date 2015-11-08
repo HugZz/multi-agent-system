@@ -9,13 +9,13 @@ public class Boids
     //Pourcentage  voulu de l'action de la l'alignement  sur les boid : 1=1%
     private static final int kA = 13;
     //Distance d'action de la force de séparation
-    private static final int dS = 20;
+    private static final int dS = 6;
     // Vitesse qu'un boid ne pourra pas depasser
-    private static final int vitesseLimite = 10;
+    private static final int vitesseLimite = 20;
     // Distance Maximum autour d'un boid dans la quelle les autre boids l'influe directement 
     private static final int distanceVision = 150;
     // Zone de l'écran dans lesquelles les boids doivent rester :
-    private static final int Xmax = 510;
+    private static final int Xmax = 1010;
     private static final int Ymax = 510;
     private static final int Xmin = 10;
     private static final int Ymin = 10;
@@ -104,7 +104,7 @@ public class Boids
      */
     public void step()
     {
-       System.out.println("------------------------------------------------------------------"); 
+       //System.out.println("------------------------------------------------------------------"); 
         Vect2D vc = new Vect2D(0,0);
         Vect2D va = new Vect2D(0,0);
         Vect2D vs = new Vect2D(0,0);
@@ -136,8 +136,8 @@ public class Boids
     public void reInit()
     {
         for(int i=0; i<this.getNbBoids() ; i++){
-            this.getFlock()[i].setP((int)(Math.random()*500),(int)(Math.random()*500));
-            this.getFlock()[i].setV(0,0);
+            this.getFlock()[i].setP((int)(Math.random()*Xmax),(int)(Math.random()*Ymax));
+            this.getFlock()[i].setV( 5, 2);
         }
     }
 
@@ -164,8 +164,8 @@ public class Boids
         double nv = 1.0;
         nv = Math.sqrt( (double)(b.getVx()*b.getVx()) + (double)(b.getVy()*b.getVy()) ); 
         if ( (int)nv > vitesseLimite ) {
-            b.getV().vMult(vitesseLimite);
             b.getV().vDiv((int)nv) ;
+            b.getV().vMult(vitesseLimite);
         }
     }
     
@@ -217,13 +217,15 @@ public class Boids
     public Vect2D alignement (Boid b) 
     {
         Vect2D a = new Vect2D(0,0);
+        Boid bi = new Boid();
         int cmpt = 0;
-        for(Boid bi : this.getFlock() ) {
-            if ( bi != b ) {
-                if ( distance(bi.getP(),b.getP()) < distanceVision ) {
-                    a.translate(bi.getVx() , bi.getVy() );
-                    cmpt++;
-                }
+        int d = 0;
+        for(int i=0; i<this.getNbBoids(); i++ ) {
+            bi = this.getFlock()[i];
+            d = distance( bi.getP(), b.getP() ); 
+            if ( (d>0) && (d<distanceVision) ) {
+                a.vAdd( bi.getV() );
+                cmpt++;
             }
         }
         if (cmpt > 0) {
@@ -246,13 +248,15 @@ public class Boids
     {
         Vect2D s = new Vect2D(0,0);
         Vect2D tmp = new Vect2D(0,0);
-        for(Boid bi : this.getFlock() ) {
-            if ( bi != b ) {
-                if (distance(bi.getP(), b.getP() ) < dS) {
-                    tmp.vAdd(b.getP());
-                    tmp.vSub(bi.getP());
-                    s.vSub( tmp );
-                }
+        Boid bi = new Boid();
+        int d = 0 ;
+        for(int i=0; i<this.getNbBoids(); i++ ) {
+            bi = this.getFlock()[i];
+            d = distance( bi.getP(), b.getP() ); 
+            if ( (d>0) && (d<dS) ) {
+                tmp.vAdd(b.getP());
+                tmp.vSub(bi.getP());
+                s.vSub( tmp );
             }
         }
         return s;
