@@ -220,14 +220,14 @@ public class Habitations {
         if( i==this.getNbL()-1 ) { h = 0;}
         if( k==0) { g = (this.getNbC()-1);}
         if( k==this.getNbC()-1 ) { d = 0;}
-        if ( this.getCellule(b,g) != etat ) cpt++;
-        if ( this.getCellule(i,g) != etat ) cpt++;
-        if ( this.getCellule(h,g) != etat ) cpt++;
-        if ( this.getCellule(b,k) != etat ) cpt++;
-        if ( this.getCellule(h,k) != etat ) cpt++;
-        if ( this.getCellule(b,d) != etat ) cpt++;
-        if ( this.getCellule(i,d) != etat ) cpt++;
-        if ( this.getCellule(h,d) != etat ) cpt++;
+        if ( this.getCellule(b,g) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(i,g) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(h,g) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(b,k) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(h,k) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(b,d) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(i,d) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(h,d) != etat && this.getCellule(b,g) != -1) cpt++;
         return cpt;
     }
 
@@ -244,20 +244,20 @@ public class Habitations {
                 // Si l'habitation de couleur considérée ( != -1 ) a plus de K voisins
                 // différents, elle déménage.
                 if(voisinDiff > this.getK() && this.getCellule(i, k) != -1) {
-                    System.out.printf("Ségrégation !\n");
-                    System.out.printf("à déménager : i = %d, k = %d\n", i, k);
+                    //System.out.printf("Ségrégation !\n");
+                    //System.out.printf("à déménager : i = %d, k = %d\n", i, k);
                     // L'habitation devient vacante sur la grille.
                     this.setTmpCellule(i, k, -1);
                     // On prend le premier élément de la liste des habitations vacantes,
                     // et on déplace l'habitation.
-                    System.out.println("Etat des vacants avant le pop : \n" + this.getVac());
+                    //System.out.println("Etat des vacants avant le pop : \n" + this.getVac());
                     Point nlleMaison = new Point(this.getVac().pop());
-                    System.out.printf("à emménager : i = %d, k = %d\n", (int)nlleMaison.getX(), (int)nlleMaison.getY());
+                    //System.out.printf("à emménager : i = %d, k = %d\n", (int)nlleMaison.getX(), (int)nlleMaison.getY());
                     this.setTmpCellule((int)nlleMaison.getX(), (int)nlleMaison.getY(), this.getCellule(i,k));
                     // On ajoute l'habitation à la liste chainée.
-                    System.out.println("Etat des vacants après le pop : \n" + this.getVac());
+                    //System.out.println("Etat des vacants après le pop : \n" + this.getVac());
                     this.getVac().add(new Point(i, k));
-                    System.out.println("Etat des vacants après le add : \n" + this.getVac());
+                    //System.out.println("Etat des vacants après le add : \n" + this.getVac());
                 }
             }
         }
@@ -274,22 +274,27 @@ public class Habitations {
      */
     public void reInit(){
         int c = 0;
+        int nbVac = 0;
         this.getVac().clear();
         Random r = new Random();
         for(int i=0; i<this.getNbL(); i++){
             for(int k=0;k<this.getNbC(); k++){
-                c = r.nextInt(this.getNbEtats());
-                this.setCellule(i, k, c);
-                this.setTmpCellule(i, k, c);
+                // On met des cases vacantes par défaut.
+                // On met 1/(10*k) d'habitations vacantes (empirique).
+                if (nbVac < (this.getNbL() * this.getNbC()) / (5 * (this.getK() + 1))) {
+                    this.setCellule(i, k, -1);
+                    this.setTmpCellule(i, k, -1);
+                    this.getVac().add(new Point(i, k));
+                    nbVac++;
+                }
+                else {
+                    c = r.nextInt(this.getNbEtats());
+                    this.setCellule(i, k, c);
+                    this.setTmpCellule(i, k, c);
+                }
             }
         }
-        // On met des cases vacantes par défaut.
-        for(int i = 0; i < 50; i++) {
-            this.setCellule(i, 0, -1);
-            this.setTmpCellule(i, 0, -1);
-            this.getVac().add(new Point(i, 0));
-        }
-        System.out.println("Etat des vacants après l'init : \n" + this.getVac());
+        //System.out.println("Etat des vacants après l'init : \n" + this.getVac());
     }
     
     @Override

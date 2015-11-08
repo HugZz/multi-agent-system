@@ -27,7 +27,8 @@ public class TestGUIHabitations {
         GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
         //window.addGraphicalElement(new Rectangle(0, 90, Color.BLACK, Color.BLACK, 10));
         
-        HabitationsSimulator jvc = new HabitationsSimulator(nbColonnes, nbLignes,largeur/nbLignes, ne, k, window); 
+        //HabitationsSimulator jvc = new HabitationsSimulator(nbColonnes, nbLignes,largeur/nbLignes, ne, k, window); 
+        HabitationsSimulator jvc = new HabitationsSimulator(nbLignes, nbColonnes,largeur/nbLignes, ne, k, window); 
 
         window.setSimulable(jvc);
     }
