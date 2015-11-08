@@ -5,15 +5,15 @@ public class Boids
     private Boid [] flock;
     private int nbBoids;
     //Pourcentage  voulu de l'action de la cohesion sur les boid : 1=1%
-    private static final int kC = 1;
+    private static final int kC = 5;
     //Pourcentage  voulu de l'action de la l'alignement  sur les boid : 1=1%
     private static final int kA = 13;
-    //Pourcentage  voulu de l'action de la separation sur les boid : 1=1%
-    private static final int kS = 25;
+    //Distance d'action de la force de séparation
+    private static final int dS = 25;
     // Vitesse qu'un boid ne pourra pas depasser
     private static final int vitesseLimite = 100;
     // Distance Maximum autour d'un boid dans la quelle les autre boids l'influe directement 
-    private static final int distanceLimite = 1000;
+    private static final int distanceVision = 1000;
     // Zone de l'écran dans lesquelles les boids doivent rester :
     private static final int Xmax = 510;
     private static final int Ymax = 510;
@@ -102,7 +102,8 @@ public class Boids
     /**
      * Methode qui calcule la nouvelle position et vitesse de chaque boid en fonction des autres 
      */
-    public void step(){
+    public void step()
+    {
         Vect2D vc = new Vect2D(0,0);
         Vect2D va = new Vect2D(0,0);
         Vect2D vs = new Vect2D(0,0);
@@ -112,11 +113,11 @@ public class Boids
         }
         for( int i=0; i<this.getNbBoids(); i++){
             vc = cohesion(this.getFlock()[i]);
-          //  va = alignement(this.getFlock()[i]);
-          //  vs = separation(this.getFlock()[i]);
+            //va = alignement(this.getFlock()[i]);
+            //vs = separation(this.getFlock()[i]);
 
             tmpFlock[i].setV( this.getFlock()[i].getVx() + (int)(vc.getX()) + (int)(va.getX()) + (int)(vs.getX()) ,
-                                this.getFlock()[i].getVy() + (int)(vc.getY()) + (int)(va.getY()) + (int)(vs.getY()) ); 
+                              this.getFlock()[i].getVy() + (int)(vc.getY()) + (int)(va.getY()) + (int)(vs.getY()) ); 
           //  limiteV(tmpFlock[i]);
 
             tmpFlock[i].setP( this.getFlock()[i].getPx() + this.getFlock()[i].getVx() ,
@@ -175,29 +176,32 @@ public class Boids
      */
     public Vect2D cohesion(Boid b) 
     {
+        System.out.println("--------------------------------------------------------------------------------");
         Vect2D c = new Vect2D(0,0);
         int cmpt = 0;
         int d = 0;
         Boid bi = new Boid();
         for(int i=0; i<this.getNbBoids(); i++ ) {
             bi = this.getFlock()[i];
-            System.out.println("bi =(" + bi.getPx() + ";" + bi.getPx() + ")" );
+            System.out.println("bi =(" + bi.getPx() + ";" + bi.getPy() + ")" );
             d = distance( bi.getP(), b.getP() );
-            if ( (d > 0) && (d < distanceLimite) ) {
-                System.out.println("boid: " + i + " d="+d +"  c=(" + c.getX() + ";" + c.getY() + ")" );
-                c.translate(bi.getPx() , bi.getPy() );
+            System.out.println("boid: " + i + " d=" + d + " de b");
+            if ( (d > 0) && (d < distanceVision) ) {
+                c.vAdd( bi.getP() );
                 System.out.println("----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
                 cmpt++;
             }
         }
-        if (cmpt > 1) {
-            c.move( (int)((c.getX()) / cmpt),
-                    (int)((c.getY()) / cmpt) );
-
-            c.move( ((int)(c.getX()) - b.getPx())/100,
-                    ((int)(c.getY()) - b.getPy())/100 );
+        if (cmpt > 0) {
+            c.vDiv(cmpt);  // c = c/cmpt
+                System.out.println("c = c/cmpt ----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
+            c.vSub( b.getP() );
+                System.out.println("c = c-b.pos ----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
+            c.vMult(kC);
+                System.out.println("c = c*kc----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
+            c.vDiv(100);
         }
-        System.out.println("c=(" + c.getX() + ";" + c.getY() + ")" );
+        System.out.println("cFINAL=(" + c.getX() + ";" + c.getY() + ")" );
         System.out.println("\n\n");
         return c;
     }
@@ -214,22 +218,20 @@ public class Boids
         int cmpt = 0;
         for(Boid bi : this.getFlock() ) {
             if ( bi != b ) {
-                if ( distance(bi.getP(),b.getP()) < distanceLimite ) {
+                if ( distance(bi.getP(),b.getP()) < distanceVision ) {
                     a.translate(bi.getVx() , bi.getVy() );
                     cmpt++;
                 }
             }
         }
-        if (cmpt == 0) {
-            cmpt = 1;
+        if (cmpt > 0) {
+            a.vDiv(cmpt); 
+            a.vSub(b.getV());
+            a.vDiv(kA); 
         }
-        a.move( (int)(a.getX())/ cmpt,
-                (int)(a.getY()) / cmpt );
-
-        a.move( ((int)(a.getX()) - b.getVx())/8,
-                ((int)(a.getY()) - b.getVy())/8 );
         return a;
     }
+
     /**
      *  Implementation de la régle de séparation des boids : calcule de la force à appliquer à b
      *  @param b 
@@ -240,11 +242,13 @@ public class Boids
     public Vect2D separation (Boid b) 
     {
         Vect2D s = new Vect2D(0,0);
+        Vect2D tmp = new Vect2D(0,0);
         for(Boid bi : this.getFlock() ) {
             if ( bi != b ) {
-                if (distance(bi.getP(), b.getP() ) < kS) {
-                    s.translate(b.getPx() - bi.getPx(),
-                                b.getPy() - bi.getPy() );
+                if (distance(bi.getP(), b.getP() ) < dS) {
+                    tmp.vAdd(b.getP());
+                    tmp.vSub(bi.getP());
+                    s.vSub( tmp );
                 }
             }
         }
@@ -267,4 +271,5 @@ public class Boids
         d = Math.sqrt( (xb-xa)*(xb-xa) + (yb-ya)*(yb-ya) );
         return (int)d;
     }
+
 }
