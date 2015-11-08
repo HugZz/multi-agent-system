@@ -107,7 +107,7 @@ public class Habitations {
     /**
      * Adder: de grille
      * @param g
-     *      Tableau 2D de boolean
+     *      Tableau 2D temporaire de int
      */
     public void setTmpGrille(int[][] tmpG){
         this.tmpGrille = tmpG;
@@ -145,7 +145,7 @@ public class Habitations {
     /**
      * Adder du nombre d'état possible par case
      * @param ne
-     *      nombre d'état par possible par cellule 
+     *      nombre d'état possible par cellule 
      */
     public void setNbEtats(int ne){
         this.nbEtats = ne;
@@ -221,13 +221,13 @@ public class Habitations {
         if( k==0) { g = (this.getNbC()-1);}
         if( k==this.getNbC()-1 ) { d = 0;}
         if ( this.getCellule(b,g) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(i,g) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(h,g) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(b,k) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(h,k) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(b,d) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(i,d) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(h,d) != etat && this.getCellule(b,g) != -1) cpt++;
+        if ( this.getCellule(i,g) != etat && this.getCellule(i,g) != -1) cpt++;
+        if ( this.getCellule(h,g) != etat && this.getCellule(h,g) != -1) cpt++;
+        if ( this.getCellule(b,k) != etat && this.getCellule(b,k) != -1) cpt++;
+        if ( this.getCellule(h,k) != etat && this.getCellule(h,k) != -1) cpt++;
+        if ( this.getCellule(b,d) != etat && this.getCellule(b,d) != -1) cpt++;
+        if ( this.getCellule(i,d) != etat && this.getCellule(i,d) != -1) cpt++;
+        if ( this.getCellule(h,d) != etat && this.getCellule(h,d) != -1) cpt++;
         return cpt;
     }
 

@@ -23,6 +23,7 @@ public class TestGUIHabitations {
         }
         else {
             System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le nombre d'états (int) \n le paramètre de ségregation (int)\n"); 
+            return;
         }
         GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
         //window.addGraphicalElement(new Rectangle(0, 90, Color.BLACK, Color.BLACK, 10));

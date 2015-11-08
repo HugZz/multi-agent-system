@@ -3,7 +3,7 @@ import java.awt.Color;
 /**
  * Cette classe est le Simulateur de Cellules
  * Grace à ces méthodes vous pourrez jouer au jeu de l'immigration
- * @author Oussama Ben-Laden
+ * @author Hugues Devalon
  * @version 9.11
  */
 public class HabitationsSimulator implements gui.Simulable {
