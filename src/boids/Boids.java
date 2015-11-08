@@ -9,9 +9,9 @@ public class Boids
     //Pourcentage  voulu de l'action de la l'alignement  sur les boid : 1=1%
     private static final int kA = 13;
     //Distance d'action de la force de séparation
-    private static final int dS = 10;
+    private static final int dS = 20;
     // Vitesse qu'un boid ne pourra pas depasser
-    private static final int vitesseLimite = 100;
+    private static final int vitesseLimite = 10;
     // Distance Maximum autour d'un boid dans la quelle les autre boids l'influe directement 
     private static final int distanceVision = 150;
     // Zone de l'écran dans lesquelles les boids doivent rester :
@@ -104,6 +104,7 @@ public class Boids
      */
     public void step()
     {
+       System.out.println("------------------------------------------------------------------"); 
         Vect2D vc = new Vect2D(0,0);
         Vect2D va = new Vect2D(0,0);
         Vect2D vs = new Vect2D(0,0);
@@ -118,7 +119,8 @@ public class Boids
 
             tmpFlock[i].setV( this.getFlock()[i].getVx() + (int)(vc.getX()) + (int)(va.getX()) + (int)(vs.getX()) ,
                               this.getFlock()[i].getVy() + (int)(vc.getY()) + (int)(va.getY()) + (int)(vs.getY()) ); 
-          //  limiteV(tmpFlock[i]);
+            limiteV(tmpFlock[i]);
+           // System.out.println("V" + i + "=( " + this.getFlock()[i].getVx() + ";" + this.getFlock()[i].getVy() + " )\n" ); 
 
             tmpFlock[i].setP( this.getFlock()[i].getPx() + this.getFlock()[i].getVx() ,
                               this.getFlock()[i].getPy() + this.getFlock()[i].getVy() ); 
@@ -162,8 +164,8 @@ public class Boids
         double nv = 1.0;
         nv = Math.sqrt( (double)(b.getVx()*b.getVx()) + (double)(b.getVy()*b.getVy()) ); 
         if ( (int)nv > vitesseLimite ) {
-            b.setV( (b.getVx() / (int)nv) * vitesseLimite,
-                    (b.getVy() / (int)nv) * vitesseLimite );
+            b.getV().vMult(vitesseLimite);
+            b.getV().vDiv((int)nv) ;
         }
     }
     
