@@ -125,9 +125,9 @@ public class CellulesSimulator2 implements gui.Simulable {
     public void affiche() {
         Color c = new Color(0,0,0);
         for(int i=0; i<(this.getPlateau().getNbL()); i++){
-            for(int k=0; k<(getPlateau().getNbL()); k++){
+            for(int k=0; k<(getPlateau().getNbC()); k++){
                 c = this.getColorEtat(this.getPlateau().getCellule(i, k));
-                this.getGUIPlateau().addGraphicalElement( new Rectangle(tailleCellule*i+tailleCellule/2,tailleCellule*k+tailleCellule/2, c, c, this.getTailleCellule()) );
+                this.getGUIPlateau().addGraphicalElement( new Rectangle(tailleCellule*k+tailleCellule/2,tailleCellule*i+tailleCellule/2, c, c, this.getTailleCellule()) );
             }
         }
     }

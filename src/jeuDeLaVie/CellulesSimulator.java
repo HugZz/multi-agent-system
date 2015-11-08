@@ -116,14 +116,14 @@ public class CellulesSimulator implements Simulable {
     public void affiche(){
         Color c = new Color(0,0,0);
         for(int i=0; i<(this.getPlateau().getNbL()); i++){
-            for(int k=0; k<(getPlateau().getNbL()); k++){
+            for(int k=0; k<(getPlateau().getNbC()); k++){
                 if(this.getPlateau().getCellule(i,k)){
                     c = Color.WHITE;
                 }
                 else {
                     c = Color.BLACK;
                 }
-                this.getGUIPlateau().addGraphicalElement( new Rectangle(tailleCellule*i+tailleCellule/2,tailleCellule*k+tailleCellule/2, c, c, tailleCellule) );
+                this.getGUIPlateau().addGraphicalElement( new Rectangle(tailleCellule*k+tailleCellule/2,tailleCellule*i+tailleCellule/2, c, c, tailleCellule) );
             }
         }
     }
