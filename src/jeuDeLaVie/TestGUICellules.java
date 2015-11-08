@@ -9,20 +9,23 @@ import java.awt.Color;
  */
 public class TestGUICellules {
     public static void main (String [] args ){
-            int nbLignes = 0;
-            int nbColonnes = 0;
-            int d = 0;
+        int nbLignes = 0;
+        int nbColonnes = 0;
+        int d = 0;
+            
+        GUISimulator window = new GUISimulator(500, 500, Color.BLUE);
+        CellulesSimulator jvc = null;
+
         if (args.length > 2) {
             nbLignes = Integer.parseInt(args[0]); 
             nbColonnes = Integer.parseInt(args[1]);
             d = Integer.parseInt(args[2]);
+            jvc = new CellulesSimulator(nbLignes, nbColonnes , d, window); 
         }
         else {
             System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le pourcentage de remplissage (int)"); 
+            jvc = new CellulesSimulator(50, 50 , 50, window); 
         }
-        GUISimulator window = new GUISimulator(500, 500, Color.BLUE);
-        
-        CellulesSimulator jvc = new CellulesSimulator(nbLignes, nbColonnes , d, window); 
 
         window.setSimulable(jvc);
     }
