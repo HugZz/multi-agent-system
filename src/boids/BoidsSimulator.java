@@ -46,5 +46,6 @@ public class BoidsSimulator implements gui.Simulable {
                                                             r) 
                                 );
         }
+
     }
 }
