@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 NOV 2015 11:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  10 NOV 2015 11:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -873,25 +873,21 @@ Overfull \vbox (42.67912pt too high) has occurred while \output is active []
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./UML_C
 ellules-eps-converted-to.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 49.
+(Font)              <10> on input line 50.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 49.
+(Font)              <7> on input line 50.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 49.
+(Font)              <5> on input line 50.
 
 Overfull \vbox (42.67912pt too high) has occurred while \output is active []
 
 
-[2]
-Overfull \vbox (42.67912pt too high) has occurred while \output is active []
-
-
-[3] (./rapport.aux) ) 
+[2] (./rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 14861 strings out of 493089
- 279038 string characters out of 6134842
- 323799 words of memory out of 5000000
- 18030 multiletter control sequences out of 15000+600000
+ 14856 strings out of 493089
+ 278979 string characters out of 6134842
+ 318791 words of memory out of 5000000
+ 18025 multiletter control sequences out of 15000+600000
  57874 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,8n,54p,542b,439s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -904,10 +900,10 @@ texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/tex-gyre/qplbi.pfb></usr/local/texlive/2015/texmf-dist/
 fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2015/texmf-dist/fonts/
 type1/public/tex-gyre/qplri.pfb>
-Output written on rapport.pdf (3 pages, 327417 bytes).
+Output written on rapport.pdf (2 pages, 319402 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 46 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
