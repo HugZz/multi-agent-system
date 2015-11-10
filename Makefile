@@ -70,11 +70,11 @@ exeTestCellules2:
 exeTestGUICellules2:
 	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1)
 exeTestHabitations:
-	java -classpath bin:bin/gui.jar TestHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
+	java -classpath bin:bin/gui.jar TestHabitations $(ARG1) $(ARG2)
 exeTestGUIHabitations:
-	java -classpath bin:bin/gui.jar TestGUIHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
+	java -classpath bin:bin/gui.jar TestGUIHabitations $(ARG1) $(ARG2)
 exeTestGUIBoids:
-	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1)
 
 clean:
 	rm -rf bin/*.class

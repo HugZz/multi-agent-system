@@ -9,27 +9,28 @@ import java.awt.Color;
  */
 public class TestGUIHabitations {
     public static void main (String [] args ){
-        int nbLignes = 50;
-        int nbColonnes = 50;
-        int largeur = 500;
-        int hauteur = 500;
+        int nbLignes = 150;
+        int nbColonnes = 250;
+	int tailleCellule = 5;
+        int largeur = 1000;
+        int hauteur = 750;
         int ne = 2;
         int k = 3;
-        if (args.length == 4) {
-            nbLignes = Integer.parseInt(args[0]); 
-            nbColonnes = Integer.parseInt(args[1]);
-            ne = Integer.parseInt(args[2]);
-            k = Integer.parseInt(args[3]);
+        //if (args.length == 4) {
+        if (args.length == 2) {
+            ne = Integer.parseInt(args[0]);
+            k = Integer.parseInt(args[1]);
+            //nbLignes = Integer.parseInt(args[2]); 
+            //nbColonnes = Integer.parseInt(args[3]);
         }
         else {
-            System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le nombre d'états (int) \n le paramètre de ségregation (int)\n"); 
+            //System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le nombre d'états (int) \n le paramètre de ségregation (int)\n"); 
+            System.out.println("Veuillez donner en entrée de l'exe :\n ARG1= le nombre d'états (int)[0..10]\n ARG2= le paramètre de ségregation (int)[0..8]\n"); 
             return;
         }
         GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
-        //window.addGraphicalElement(new Rectangle(0, 90, Color.BLACK, Color.BLACK, 10));
         
-        //HabitationsSimulator jvc = new HabitationsSimulator(nbColonnes, nbLignes,largeur/nbLignes, ne, k, window); 
-        HabitationsSimulator jvc = new HabitationsSimulator(nbLignes, nbColonnes,largeur/nbLignes, ne, k, window); 
+        HabitationsSimulator jvc = new HabitationsSimulator(nbLignes, nbColonnes,tailleCellule, ne, k, window); 
 
         window.setSimulable(jvc);
     }
