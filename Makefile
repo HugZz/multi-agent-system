@@ -66,9 +66,9 @@ exeTestCellules:
 exeTestGUICellules:
 	java -classpath bin:bin/gui.jar TestGUICellules 100 100 10 #$(ARG1) $(ARG2) $(ARG3)
 exeTestCellules2:
-	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1)
 exeTestGUICellules2:
-	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1)
 exeTestHabitations:
 	java -classpath bin:bin/gui.jar TestHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
 exeTestGUIHabitations:

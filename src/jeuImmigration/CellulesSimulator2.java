@@ -10,6 +10,7 @@ public class CellulesSimulator2 implements gui.Simulable {
     private Cellules2 plateau;
     private GUISimulator GUIPlateau;
     private int tailleCellule;
+    private ColorTable colorTable;
     /**
      *Constructeur par défaut sans paramètre 
      */
@@ -17,6 +18,7 @@ public class CellulesSimulator2 implements gui.Simulable {
         this.setPlateau(new Cellules2(50,50,50));
         this.setGUIPlateau(new GUISimulator(500, 500, Color.BLUE));
         this.setTailleCellule(10);
+	this.setColorTable();
     }
     /**
      *Constructeur de la classe avec paramètre 
@@ -35,20 +37,21 @@ public class CellulesSimulator2 implements gui.Simulable {
         this.setPlateau(new Cellules2(n,m,ne));
         this.setGUIPlateau(g);
         this.setTailleCellule(t);
+	this.setColorTable();
     }
     /**
      * Adder de plateau à partir de Cellules
      * @param c
      *      Cellules à créer dans le plateau
      */
-    public void setPlateau(Cellules2 c){
+    private void setPlateau(Cellules2 c){
         this.plateau = c;
     }
     /**
      * Getter de plateau
      * @return Cellules du plateau
      */
-    public Cellules2 getPlateau(){
+    private Cellules2 getPlateau(){
         return this.plateau;
     }
     /**
@@ -56,14 +59,14 @@ public class CellulesSimulator2 implements gui.Simulable {
      * @param g
      *      Fenêtre à créer pour contenir le plateau
      */
-    public void setGUIPlateau(GUISimulator g){
+    private void setGUIPlateau(GUISimulator g){
         this.GUIPlateau = g;
     }
     /**
      * Adder de GUIPlateau
      * @return Attribut GUIPlateau de CellulesSimulator
      */
-    public GUISimulator getGUIPlateau(){
+    private GUISimulator getGUIPlateau(){
        return this.GUIPlateau;
     }
     /**
@@ -75,7 +78,7 @@ public class CellulesSimulator2 implements gui.Simulable {
     /**
      * @return Done la taille graphique des cellules
      */
-    public int getTailleCellule(){
+    private int getTailleCellule(){
         return this.tailleCellule;
     }
     /**
@@ -97,28 +100,30 @@ public class CellulesSimulator2 implements gui.Simulable {
         this.affiche();
     }
     /**
-     * Méthode qui donne une couleur en fonction de l'entrée
-     * @param e
-     *      Etat de la Cellule
-     * @return c
-     *      Couleur correspondante à cet état
+     * Creer la table des corespondance : Entierw -> Couleurs
+     * @param ne
+     * 		créra une table de correspondance pour les ne premier entiers
      */
-    public Color getColorEtat(int e){
-        if( e == 0 ) { return Color.BLACK;}
-        if( e == 1 ) { return Color.BLUE;}
-        if( e == 2 ) { return Color.RED;}
-        if( e == 3 ) { return Color.YELLOW;}
-        if( e == 4 ) { return Color.GREEN;}
-        if( e == 5 ) { return Color.PINK;}
-        if( e == 6 ) { return Color.GRAY;}
-        if( e == 7 ) { return Color.ORANGE;}
-        if( e == 8 ) { return Color.MAGENTA;}
-        if( e == 9 ) { return Color.DARK_GRAY;}
-        if( e == 10) { return Color.LIGHT_GRAY;}
-        else {
-            throw new RuntimeException("ERREUR(couleur) l'état est forcement dans ]1:10]!!!");
-        }
+    private void setColorTable() {
+    	ColorTable ct = new ColorTable();
+	ct.associer(0, Color.BLUE);
+	ct.associer(1, Color.RED);
+	ct.associer(2, Color.YELLOW);
+	ct.associer(3, Color.GREEN);
+	ct.associer(4, Color.ORANGE);
+	ct.associer(5, Color.MAGENTA);
+	ct.associer(6, Color.PINK);
+	ct.associer(7, Color.BLACK);
+	ct.associer(8, Color.GRAY);
+	ct.associer(9, Color.DARK_GRAY);
+	ct.associer(10, Color.LIGHT_GRAY);
+	this.colorTable = ct;
+	System.out.println(this.colorTable.toString());
     }
+    private ColorTable getColorTable(){
+    	return this.colorTable;
+    }
+
     /**
      * Fonction qui affiche avec la bonne couleur les Cellules dans la fenêtre graphique
      */
@@ -126,7 +131,7 @@ public class CellulesSimulator2 implements gui.Simulable {
         Color c = new Color(0,0,0);
         for(int i=0; i<(this.getPlateau().getNbL()); i++){
             for(int k=0; k<(getPlateau().getNbC()); k++){
-                c = this.getColorEtat(this.getPlateau().getCellule(i, k));
+                c = this.getColorTable().obtenirColor(this.getPlateau().getCellule(i, k));
                 this.getGUIPlateau().addGraphicalElement( new Rectangle(tailleCellule*k+tailleCellule/2,tailleCellule*i+tailleCellule/2, c, c, this.getTailleCellule()) );
             }
         }
