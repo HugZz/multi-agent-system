@@ -1,0 +1,92 @@
+\documentclass[a4paper, 10pt, french]{article}
+% Préambule; packages qui peuvent être utiles
+   \RequirePackage[T1]{fontenc}        % Ce package pourrit les pdf...
+   \RequirePackage{babel,indentfirst}  % Pour les césures correctes,
+                                       % et pour indenter au début de chaque paragraphe
+   \RequirePackage[utf8]{inputenc}   % Pour pouvoir utiliser directement les accents
+                                     % et autres caractères français
+   \RequirePackage{lmodern,tgpagella} % Police de caractères
+   \textwidth 17cm \textheight 25cm \oddsidemargin -0.24cm % Définition taille de la page
+   \evensidemargin -1.24cm \topskip 0cm \headheight -1.5cm % Définition des marges
+   \RequirePackage{latexsym}                  % Symboles
+   \RequirePackage{amsmath}                   % Symboles mathématiques
+   \RequirePackage{tikz}   % Pour faire des schémas
+   \RequirePackage{graphicx} % Pour inclure des images
+   \RequirePackage{listings} % pour mettre des listings
+% Fin Préambule; package qui peuvent être utiles
+
+\title{Rapport de TP 4MMPOO : Simulation Orientée-Objet de systèmes multiagents }
+\author{
+MAHIEU Lucas (SL\_PHELMA) 
+\\ DEVALON Hugues (SLE\_PHELMA) 
+}
+
+\begin{document}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{\em Préambule}
+{L’objectif de ce TP est de développer en Java des applications permettant de simuler de manière graphique des systèmes multiagents. Dans un premier temps, nous nous intéresserons à trois systèmes de type automate cellulaire : le jeu de la vie de Conway, un jeu de l’immigration, et le modèle de ségrégation de Schelling. Dans un second temps, nous nous intéresserons à la simulation d’un système de mouvement d’essaims auto-organisés : le modèle de Boids.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Automates Cellulaires}
+	\subsection{Jeu de la vie de Conway\,: }
+		{
+Nous présentons en figure~\ref{étiquette} page~\pageref{étiquette} la représentation UML des classes permettant la Simulation de l'automate cellulaire du jeu de la vie de Conway. Nous avons explicité les attributs privées des classes pour que vous compreniez mieux nos choix de conception.
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{UML_Cellules.eps}
+	\caption{\label{étiquette} Diagramme des classes du jeu de la vie de Conway}
+\end{figure}
+\\ \indent Comme vous pouvez le constater, nous avons utiliser des classes assez 'génériques' pour qu'elle soit facilement réutilisables pour les autres jeux. D'ailleurs on peut remarquer que notre conception est presque identique à celle proposée pour le jeux de balles. En effet, ici nous manipulons un tableau de {\em boolean} et non plus un tableau de {\em Point}. Ainsi pour l'adapter à d'autres jeux, il suffirait de modifier les booleans par des entiers, des couleurs, ou autre états plus complexes.
+\\ \indent Pour tester ces classes, nous avons utiliser deux classes de tests : l'une pour faire une simulation textuelle, l'autre pour tester la simulation graphiquement.
+		} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Jeu de l'immigration\,:}
+	{
+Les seules différences avec le jeux de la vie sont 
+	\begin{itemize}
+		\item Qu'une cellule peut prendre un nombre {\em $n_e$} d'états et non plus seulement 2.
+		\item Les règles de changement d'états.
+	\end{itemize}
+\indent Du fait que notre conception est générique, nous avons réutilisé le jeu de la vie en y ajoutant une seule chose : le nombre d'états possibles pour une cellules. Ainsi nous pouvions supprimer l'attribut de densité utile à l'initialisation du jeu de la vie, et modifier la règle dans la méthode {\em void actualiser( )}. 
+\\ \indent Nous avons fait le choix de créer une correspondance entre les {\em Entiers} qui représente l'état d'une cellule et une {\em Couleur} qui sera affichée dans sa simulation graphique.
+	}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Le modèle de Schelling\,:}
+ 	{ 
+	A TOI DE COMPLETER CETTE PARTIE LA POUR EXPLIQUER CE QUE TU AS UTILISEE ET PQ 
+	} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Un modèle d'essaims\,: les {\em boids}}
+  \subsection{Troupeaux de boids}
+  {
+  
+  }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Un gestionnaire à évènements discrets\,:} 
+      {
+      Le
+      } 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \subsubsection{Modification de votre simulateur\,: } 
+      {
+       
+      }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \subsubsection{Simulation de plusieurs groupes de boids\,: } 
+      {
+      
+      }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bilan}
+{\em Donner  une réponse justifiée  à la question\,: 
+              les  temps mesurés correspondent ils  à votre analyse théorique (nombre d’opérations et défauts de cache) ?
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%% Fin mise au format
+
