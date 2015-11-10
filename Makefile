@@ -62,9 +62,9 @@ exeTestBallsSimulator:
 exeTestGUI1:
 	java -classpath bin:bin/gui.jar TestGUI1
 exeTestCellules:
-	java -classpath bin:bin/gui.jar TestCellules $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestCellules $(ARG1)
 exeTestGUICellules:
-	java -classpath bin:bin/gui.jar TestGUICellules 100 100 10 #$(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestGUICellules $(ARG1)
 exeTestCellules2:
 	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1)
 exeTestGUICellules2:
