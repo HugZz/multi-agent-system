@@ -10,6 +10,7 @@ public class CellulesSimulator2 implements gui.Simulable {
     private Cellules2 plateau;
     private GUISimulator GUIPlateau;
     private int tailleCellule;
+    private EventManager manager;
     /**
      *Constructeur par défaut sans paramètre 
      */
@@ -17,6 +18,8 @@ public class CellulesSimulator2 implements gui.Simulable {
         this.setPlateau(new Cellules2(50,50,50));
         this.setGUIPlateau(new GUISimulator(500, 500, Color.BLUE));
         this.setTailleCellule(10);
+        this.manager = new EventManager();
+        this.manager.addEvent(new Cellules2Event(this.plateau, 1, manager));
     }
     /**
      *Constructeur de la classe avec paramètre 
@@ -35,6 +38,8 @@ public class CellulesSimulator2 implements gui.Simulable {
         this.setPlateau(new Cellules2(n,m,ne));
         this.setGUIPlateau(g);
         this.setTailleCellule(t);
+        this.manager = new EventManager();
+        this.manager.addEvent(new Cellules2Event(this.plateau, 1, manager));
     }
     /**
      * Adder de plateau à partir de Cellules
@@ -83,7 +88,8 @@ public class CellulesSimulator2 implements gui.Simulable {
      * Effectue l'itération suivante du jeu
      */
     public void next(){
-        this.getPlateau().actualiser();
+        //this.getPlateau().actualiser();
+        this.manager.next();
         this.getGUIPlateau().reset();
         this.affiche();
     }
@@ -92,7 +98,9 @@ public class CellulesSimulator2 implements gui.Simulable {
      * Re disposer de façon aléatoire toute les cases du plateau de jeux 
      */
     public void restart(){
+        this.manager.restart();
         this.getPlateau().reInit();
+        this.manager.addEvent(new Cellules2Event(this.plateau, 1, this.manager));
         this.getGUIPlateau().reset();
         this.affiche();
     }

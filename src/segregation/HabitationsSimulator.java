@@ -10,6 +10,7 @@ public class HabitationsSimulator implements gui.Simulable {
     private Habitations plateau;
     private GUISimulator GUIPlateau;
     private int tailleCellule;
+    private EventManager manager;
     /**
      *Constructeur par défaut sans paramètre 
      */
@@ -17,6 +18,8 @@ public class HabitationsSimulator implements gui.Simulable {
         this.setPlateau(new Habitations(50,50,10, 3));
         this.setGUIPlateau(new GUISimulator(500, 500, Color.BLUE));
         this.setTailleCellule(10);
+        this.manager = new EventManager();
+        this.manager.addEvent(new HabitationsEvent(this.plateau, 1, manager));
     }
     /**
      *Constructeur de la classe avec paramètre 
@@ -37,6 +40,8 @@ public class HabitationsSimulator implements gui.Simulable {
         this.setPlateau(new Habitations(n,m,ne,k));
         this.setGUIPlateau(g);
         this.setTailleCellule(t);
+        this.manager = new EventManager();
+        this.manager.addEvent(new HabitationsEvent(this.plateau, 1, manager));
     }
     /**
      * Adder de plateau à partir de Cellules
@@ -85,8 +90,9 @@ public class HabitationsSimulator implements gui.Simulable {
      * Effectue l'itération suivante du jeu
      */
     public void next(){
-        this.getPlateau().actualiser();
+        //this.getPlateau().actualiser();
         //System.out.println(this.getPlateau().toString());
+        this.manager.next();
         this.getGUIPlateau().reset();
         this.affiche();
     }
@@ -95,7 +101,9 @@ public class HabitationsSimulator implements gui.Simulable {
      * Re disposer de façon aléatoire toute les cases du plateau de jeux 
      */
     public void restart(){
+        this.manager.restart();
         this.getPlateau().reInit();
+        this.manager.addEvent(new HabitationsEvent(this.plateau, 1, this.manager));
         //System.out.println(this.getPlateau().toString());
         this.getGUIPlateau().reset();
         this.affiche();

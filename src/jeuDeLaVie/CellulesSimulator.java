@@ -11,12 +11,15 @@ public class CellulesSimulator implements Simulable {
     private GUISimulator GUIPlateau;
     private static int tailleCellule = 10;
     private static int pourcent;
+    private EventManager manager;
     /**
      *Constructeur par défaut sans paramètre 
      */
     public CellulesSimulator(){
         this.setPlateau(new Cellules(50,50,50));
         this.setGUIPlateau(new GUISimulator(500, 500, Color.BLUE));
+        this.manager = new EventManager();
+        this.manager.addEvent(new CellulesEvent(this.plateau, 1, manager));
     }
     /**
      *Constructeur de la classe avec paramètre 
@@ -33,6 +36,8 @@ public class CellulesSimulator implements Simulable {
         this.setPlateau(new Cellules(n,m,d));
         this.setGUIPlateau(g);
         this.setPourcent(d);
+        this.manager = new EventManager();
+        this.manager.addEvent(new CellulesEvent(this.plateau, 1, manager));
     }
     /**
      * Constructeur de la classe par copie
@@ -44,6 +49,8 @@ public class CellulesSimulator implements Simulable {
     public CellulesSimulator(CellulesSimulator celSim,GUISimulator g){
         this.setPlateau(celSim.getPlateau());
         this.setGUIPlateau(g);
+        this.manager = new EventManager();
+        this.manager.addEvent(new CellulesEvent(this.plateau, 1, manager));
     }
     /**
      * Adder de plateau à partir de Cellules
@@ -95,7 +102,8 @@ public class CellulesSimulator implements Simulable {
      * Effectue l'itération suivante du jeu
      */
     public void next(){
-        this.getPlateau().actualiser();
+        this.manager.next();
+        //this.getPlateau().actualiser();
         this.getGUIPlateau().reset();
         this.affiche();
     }
@@ -104,7 +112,9 @@ public class CellulesSimulator implements Simulable {
      * Re disposer de façon aléatoire toute les cases du plateau de jeux 
      */
     public void restart(){
+        this.manager.restart();
         this.getPlateau().reInit(this.getPourcent());
+        this.manager.addEvent(new CellulesEvent(this.plateau, 1, this.manager));
         this.getGUIPlateau().reset();
         this.affiche();
     }
