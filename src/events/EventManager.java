@@ -1,34 +1,39 @@
-import java.util.*
+import java.util.PriorityQueue;
 
 public class EventManager
 {
     private long currentDate;
-    private SortedSet<Event> eventsParDate;
+    private PriorityQueue<Event> eventsParDate;
 
-    public EventManager(Event e)
+    public EventManager()
     {
-        this.eventsParDate = new TreeSet<Event> (new ComparateurDate());
-        this.eventsParDate.add(e);
+        this.eventsParDate = new PriorityQueue<Event> (new ComparateurDate());
         this.currentDate = 0;
+    }
+
+    public void addEvent(Event toAdd)
+    {
+        this.eventsParDate.add(toAdd);
     }
 
     public void next()
     {
+        Event toExecute;
         this.currentDate++;
-        for(Event index : eventsParDate)
+        System.out.println("next ... date = " + this.currentDate);
+        while(eventsParDate.peek().getDate() <= this.currentDate)
         {
-            if(index.getDate() <= this.currentDate)
-            {
-                index.execute();
-            }
-            else
-                break;
+            toExecute = eventsParDate.poll();
+            toExecute.execute();
+
+            if (this.isFinished())
+                return;
         }
     }
 
     public boolean isFinished()
     {
-        return (eventsParDate.last().getDate() <= this.currentDate)?true:false;
+        return eventsParDate.isEmpty();
     }
 
     public void restart()

@@ -1,3 +1,5 @@
+import java.util.*;
+
 class ComparateurDate implements Comparator<Event>
 {
     @Override
