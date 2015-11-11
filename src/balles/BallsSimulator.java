@@ -5,13 +5,18 @@ public class BallsSimulator implements gui.Simulable {
     private Balls balls;
     private GUISimulator guiBalls;
     private static int r=20 ;
+    private EventManager manager;
 
     public BallsSimulator(int n, GUISimulator g){
         this.setBalls(new Balls(n));
         this.setGuiBalls(g);
+        this.manager = new EventManager();
+        this.manager.addEvent(new BallsEvent(this.balls, 1, manager));
     }
     public BallsSimulator(int n){
         this.setBalls(new Balls(n));
+        this.manager = new EventManager();
+        this.manager.addEvent(new BallsEvent(this.balls, 1, manager));
     }
 
     public Balls getBalls(){
@@ -37,14 +42,17 @@ public class BallsSimulator implements gui.Simulable {
 
     @Override
     public void next(){
-        this.getBalls().execute();
+        this.manager.next();
         this.getGuiBalls().reset();
         this.affiche();
         System.out.println(this.getBalls().toString());
     }
+
     @Override
     public void restart(){
+        this.manager.restart();
         this.getBalls().reInit();
+        this.manager.addEvent(new BallsEvent(this.balls, 1, manager));
         this.getGuiBalls().reset();
         this.affiche();
         System.out.println(this.getBalls().toString());

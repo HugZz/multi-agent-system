@@ -20,8 +20,8 @@ public class EventManager
     {
         Event toExecute;
         this.currentDate++;
-        //System.out.println("next ... date = " + this.currentDate);
-        while(eventsParDate.peek().getDate() <= this.currentDate)
+        System.out.println("next ... date = " + this.currentDate);
+        while (eventsParDate.peek().getDate() <= this.currentDate)
         {
             toExecute = eventsParDate.poll();
             toExecute.execute();

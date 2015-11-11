@@ -2,7 +2,7 @@ public class MessageEvent extends Event
 {
     private String message;
 
-    public MessageEvent(int date, String message)
+    public MessageEvent(long date, String message)
     {
         super(date);
         this.message = message;
