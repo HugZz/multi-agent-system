@@ -9,18 +9,14 @@ import java.awt.Color;
  */
 public class TestGUIBoids {
     public static void main (String [] args ){
-        int nbLignes = 0;
-        int nbColonnes = 0;
         int largeur = 1000;
         int hauteur = 750;
         int ne = 0;
-        if (args.length == 3) {
-            nbLignes = Integer.parseInt(args[0]); 
-            nbColonnes = Integer.parseInt(args[1]);
-            ne = Integer.parseInt(args[2]);
+        if (args.length == 1) {
+            ne = Integer.parseInt(args[0]);
         }
         else {
-            System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le nombre d'états (int)"); 
+            System.out.println("Veuillez donner en entrée de l'exe :\n ARG1= le nombre d'états (int) [0..10]"); 
         }
         GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
         

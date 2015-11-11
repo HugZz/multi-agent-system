@@ -9,7 +9,7 @@ import java.awt.Color;
 public class CellulesSimulator implements Simulable {
     private Cellules plateau;
     private GUISimulator GUIPlateau;
-    private static int tailleCellule = 10;
+    private static int tailleCellule = 5;
     private static int pourcent;
     private EventManager manager;
     /**

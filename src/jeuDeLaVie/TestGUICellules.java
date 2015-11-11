@@ -9,22 +9,26 @@ import java.awt.Color;
  */
 public class TestGUICellules {
     public static void main (String [] args ){
-        int nbLignes = 0;
-        int nbColonnes = 0;
+        int nbLignes = 150;
+        int nbColonnes = 250;
+	int hauteur = 750 ;
+	int largeur = 1000;
         int d = 0;
             
-        GUISimulator window = new GUISimulator(500, 500, Color.BLUE);
+        GUISimulator window = new GUISimulator(largeur,hauteur, Color.BLUE);
         CellulesSimulator jvc = null;
 
-        if (args.length > 2) {
-            nbLignes = Integer.parseInt(args[0]); 
-            nbColonnes = Integer.parseInt(args[1]);
-            d = Integer.parseInt(args[2]);
+        //if (args.length > 2) {
+        if (args.length == 1) {
+            d = Integer.parseInt(args[0]);
+            //nbLignes = Integer.parseInt(args[1]); 
+            //nbColonnes = Integer.parseInt(args[2]);
             jvc = new CellulesSimulator(nbLignes, nbColonnes , d, window); 
         }
         else {
-            System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le pourcentage de remplissage (int)"); 
-            jvc = new CellulesSimulator(50, 50 , 50, window); 
+            //System.out.println("Veuillez donner en entrée de l'exe : le nombre de ligne (int) \n le nombre de colonne (int) \n le pourcentage de remplissage (int)"); 
+            System.out.println("Veuillez donner en entrée de l'exe :le pourcentage de remplissage de cases vivantes (int) [0..100]\n"); 
+	    return;
         }
 
         window.setSimulable(jvc);

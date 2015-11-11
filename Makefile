@@ -1,5 +1,9 @@
 # Ensimag 2A POO - TP 2015/16
 # ============================
+# EDITER BY :
+# LUCAS MAHIEU 
+# HUGUES DEVALON 
+# ============================
 #
 # Ce Makefile permet de compiler le test de l'ihm en ligne de commande.
 # Alternative (recommandee?): utiliser un IDE (eclipse, netbeans, ...)
@@ -66,19 +70,19 @@ exeTestBallsSimulator:
 exeTestGUIBalls:
 	java -classpath bin:bin/gui.jar TestGUIBalls
 exeTestCellules:
-	java -classpath bin:bin/gui.jar TestCellules $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestCellules $(ARG1)
 exeTestGUICellules:
-	java -classpath bin:bin/gui.jar TestGUICellules 100 100 10 #$(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestGUICellules $(ARG1)
 exeTestCellules2:
-	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1)
 exeTestGUICellules2:
-	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1)
 exeTestHabitations:
-	java -classpath bin:bin/gui.jar TestHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
+	java -classpath bin:bin/gui.jar TestHabitations $(ARG1) $(ARG2)
 exeTestGUIHabitations:
-	java -classpath bin:bin/gui.jar TestGUIHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
+	java -classpath bin:bin/gui.jar TestGUIHabitations $(ARG1) $(ARG2)
 exeTestGUIBoids:
-	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1) $(ARG2) $(ARG3)
+	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1)
 exeTestEvents:
 	java -classpath bin:bin/gui.jar TestEventManager
 exeTestGUIBoids2:
