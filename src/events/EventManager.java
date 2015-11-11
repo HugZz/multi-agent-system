@@ -41,7 +41,3 @@ public class EventManager
         this.currentDate = 0;
     }
 }
-
-
-
-

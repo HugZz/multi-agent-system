@@ -78,6 +78,11 @@ public class Balls {
             this.getB()[i].move(100*i+50,20);
         }
     }
+
+    public void execute() {
+        this.translate(11,8);
+    }
+    
     /*
      * @param i: numero de la balle dont on desire connaitre le x
      */

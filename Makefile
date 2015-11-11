@@ -29,8 +29,8 @@ testBalls:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestBalls.java
 testBallsSimulator:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestBallsSimulator.java
-testGUI1:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestGUI1.java
+testGUIBalls:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestGUIBalls.java
 testCellules:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuDeLaVie src/jeuDeLaVie/TestCellules.java
 testGUICellules:
@@ -45,6 +45,8 @@ testGUIHabitations:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/segregation src/segregation/TestGUIHabitations.java
 testGUIBoids:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/boids src/boids/TestGUIBoids.java
+testEvents:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/events src/events/TestEventManager.java
 
 all: testGUI testBalls testBallsSimulator testGUI1 testCellules
 
@@ -59,8 +61,8 @@ exeTestBalls:
 	java -classpath bin:bin/gui.jar TestBalls
 exeTestBallsSimulator:
 	java -classpath bin:bin/gui.jar TestBallsSimulator
-exeTestGUI1:
-	java -classpath bin:bin/gui.jar TestGUI1
+exeTestGUIBalls:
+	java -classpath bin:bin/gui.jar TestGUIBalls
 exeTestCellules:
 	java -classpath bin:bin/gui.jar TestCellules $(ARG1) $(ARG2) $(ARG3)
 exeTestGUICellules:
@@ -75,6 +77,8 @@ exeTestGUIHabitations:
 	java -classpath bin:bin/gui.jar TestGUIHabitations $(ARG1) $(ARG2) $(ARG3) $(ARG4)
 exeTestGUIBoids:
 	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1) $(ARG2) $(ARG3)
+exeTestEvents:
+	java -classpath bin:bin/gui.jar TestEventManager
 
 clean:
 	rm -rf bin/*.class

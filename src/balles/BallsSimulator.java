@@ -28,24 +28,25 @@ public class BallsSimulator implements gui.Simulable {
         this.guiBalls = g;
     }
 
-    @Override
-    public void next(){
-        this.getBalls().translate(11,8);
-        this.getGuiBalls().reset();
-
+    public void affiche()
+    {
         for(int i=0; i<this.getBalls().getNbBalls(); i++){
             this.getGuiBalls().addGraphicalElement(new Oval(this.getBalls().getX(i),this.getBalls().getY(i),Color.BLUE,Color.RED,r));
         }
+    }
+
+    @Override
+    public void next(){
+        this.getBalls().execute();
+        this.getGuiBalls().reset();
+        this.affiche();
         System.out.println(this.getBalls().toString());
     }
     @Override
     public void restart(){
         this.getBalls().reInit();
         this.getGuiBalls().reset();
-        for(int i=0; i<this.getBalls().getNbBalls(); i++){
-            this.getGuiBalls().addGraphicalElement(new Oval(this.getBalls().getX(i),this.getBalls().getY(i),Color.BLUE,Color.RED,r));
-        }
+        this.affiche();
         System.out.println(this.getBalls().toString());
     }
-
 }

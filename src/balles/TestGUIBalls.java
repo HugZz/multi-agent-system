@@ -1,7 +1,7 @@
 import java.awt.Color;
 import gui.*;
 
-public class TestGUI1 {
+public class TestGUIBalls {
     public static void main (String [] args) {
         int nb_balls = 4;
 
