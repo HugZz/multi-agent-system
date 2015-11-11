@@ -1,5 +1,9 @@
 # Ensimag 2A POO - TP 2015/16
 # ============================
+# EDITER BY :
+# LUCAS MAHIEU 
+# HUGUES DEVALON 
+# ============================
 #
 # Ce Makefile permet de compiler le test de l'ihm en ligne de commande.
 # Alternative (recommandee?): utiliser un IDE (eclipse, netbeans, ...)
