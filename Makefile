@@ -47,6 +47,8 @@ testGUIBoids:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/boids src/boids/TestGUIBoids.java
 testEvents:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/events src/events/TestEventManager.java
+testGUIBoids2:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/cohabitation src/cohabitation/TestGUIBoids2.java
 
 all: testGUI testBalls testBallsSimulator testGUI1 testCellules
 
@@ -79,6 +81,8 @@ exeTestGUIBoids:
 	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1) $(ARG2) $(ARG3)
 exeTestEvents:
 	java -classpath bin:bin/gui.jar TestEventManager
+exeTestGUIBoids2:
+	java -classpath bin:bin/gui.jar TestGUIBoids2 $(ARG1) $(ARG2) $(ARG3)
 
 clean:
 	rm -rf bin/*.class
