@@ -6,7 +6,12 @@ public class Vect2D extends java.awt.Point {
     public Vect2D(int x, int y) {
         super(x,y);
     }
-    
+    }
+    public void setV(int vx, int vy) {
+        this.setLocation(vx,vy);
+    }
+
+   
     public void vMult(int v) {
         this.setLocation(  (int)this.getX() * v,
                     (int)this.getY() * v );
