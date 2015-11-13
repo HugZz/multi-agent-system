@@ -10,8 +10,8 @@ public class BBSimulator extends Simulator {
         this.balls = b;
     }
 
-    public BBSimulator(int n, GUISimulator simulator, Balles balles) {
-        super(simulator);
+    public BBSimulator(int n, GUISimulator simulator, Balles balles, Event event) {
+        super(simulator, event);
         this.setBalls(balles);
     }
 
@@ -24,10 +24,5 @@ public class BBSimulator extends Simulator {
     public void reInit()
     {
         this.getBalls().reInit();
-    }
-
-    public void addEvent(Event toAdd)
-    {
-        super.getManager().addEvent(toAdd);
     }
 }
