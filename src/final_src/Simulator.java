@@ -19,6 +19,8 @@ public abstract class Simulator implements gui.Simulable {
     }
 
     public abstract void affiche();
+    public abstract void reInit();
+    public abstract void addEvent();
 
     @Override
     public void next() {
@@ -30,6 +32,9 @@ public abstract class Simulator implements gui.Simulable {
     @Override
     public void restart(){
         this.manager.restart();
+        this.reInit();
+        this.addEvent(Event toAdd);
         this.simulator.reset();
+        this.affiche;
     }
 }
