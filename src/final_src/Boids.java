@@ -4,13 +4,13 @@ public class Boids extends Balls
 {
 	private Vect2D [] vitessesB;
 	//Pourcentage  voulu de l'action de la cohesion sur les boid : 1=1%
-	private int kC = 2;
+	private int kC = 3;
 	//Pourcentage  voulu de l'action de la l'alignement  sur les boid : 1=1%
 	private int kA = 13;
 	//Distance d'action de la force de séparation
-	private int dS = 6;
+	private int dS = 10;
 	// Vitesse qu'un boid ne pourra pas depasser
-	private int vitesseLimite = 20;
+	private int vitesseLimite = 10;
 	// Distance Maximum autour d'un boid dans la quelle les autre boids l'influe directement 
 	private int distanceVision = 150;
 
@@ -22,7 +22,7 @@ public class Boids extends Balls
 		super(n);
 		Vect2D[] v = new Vect2D[n];
 		for(int i=0; i<n; i++){
-			v[i] = new Vect2D((int)(Math.random()*Xmax),(int)(Math.random()*Ymax) );
+			v[i] = new Vect2D((int)(Xmax/2),(int)(Ymax/2) );
 		}
 		this.setVitessesB(v);
 	}
@@ -126,8 +126,8 @@ public class Boids extends Balls
         double nv = 1.0;
         nv = Math.sqrt( (double)(v.getX()*v.getX()) + (double)(v.getY()*v.getY()) ); 
         if ( (int)nv > vitesseLimite ) {
-            v.vDiv((int)nv) ;
             v.vMult(vitesseLimite);
+            v.vDiv((int)nv) ;
         }
     }
     
@@ -152,7 +152,7 @@ public class Boids extends Balls
             d = distance( pi, p );
          //   System.out.println("boid: " + i + " d=" + d + " de b");
             if ( (d > 0) && (d < distanceVision) ) {
-                c.vAdd( p );
+                c.vAdd( pi );
          //       System.out.println("----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
                 cmpt++;
             }
@@ -188,7 +188,7 @@ public class Boids extends Balls
             pi = this.getBalls()[i];
             d = distance( pi, p ); 
             if ( (d>0) && (d<distanceVision) ) {
-                a.vAdd( v );
+                a.vAdd( this.getVitessesB()[i] );
                 cmpt++;
             }
         }
@@ -219,6 +219,7 @@ public class Boids extends Balls
 			pi = this.getBalls()[i];
             d = distance( pi, p ); 
             if ( (d>0) && (d<dS) ) {
+				tmp.setV(0,0);
                 tmp.vAdd( pi );
                 tmp.vSub( p );
                 s.vSub( tmp );
