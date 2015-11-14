@@ -5,8 +5,8 @@ public class Balls {
 	private  int [] sensX;
 	private  int [] sensY;
 
-	protected static final int Xmax = 1010;
-	protected static final int Ymax = 510;
+	protected static final int Xmax = 790;
+	protected static final int Ymax = 490;
 	protected static final int Xmin = 10;
 	protected static final int Ymin = 10;
 

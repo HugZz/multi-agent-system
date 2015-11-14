@@ -47,5 +47,39 @@ public class CellulesIm extends Cellules {
 			}
 		}
 	}
+	/**
+	 * Donne ne nombre de voisin à l'état '(e+1)%nbEtat' de la cellule (i,k) dans l'état 'e'
+	 * @param i
+	 *      ligne de la cellule
+	 * @param k
+	 *      colonne de la cellule
+	 * @return nombre de voisin dans l'état '(e+1)%nbEtat'
+	 */
+	public int nbVoisin(int i, int k){
+		int cpt = 0;
+		int b = i-1;
+		int h = i+1;
+		int d = k+1;
+		int g = k-1;
+		int etat = 0;
+		int n = 0;
+		etat = this.getCellule(i,k);
+		n = this.getNbEtats();
+		if( i==0 ) { b = (this.getNbL()-1);}
+		if( i==this.getNbL()-1 ) { h = 0;}
+		if( k==0) { g = (this.getNbC()-1);}
+		if( k==this.getNbC()-1 ) { d = 0;}
+		if ( this.getCellule(b,g) == (etat+1)%n ) cpt++;
+		if ( this.getCellule(i,g) == (etat+1)%n ) cpt++;
+		if ( this.getCellule(h,g) == (etat+1)%n ) cpt++;
+		if ( this.getCellule(b,k) == (etat+1)%n ) cpt++;
+		if ( this.getCellule(h,k) == (etat+1)%n ) cpt++;
+		if ( this.getCellule(b,d) == (etat+1)%n ) cpt++;
+		if ( this.getCellule(i,d) == (etat+1)%n ) cpt++;
+		if ( this.getCellule(h,d) == (etat+1)%n ) cpt++;
+		return cpt;
+	}
+
+
 
 }

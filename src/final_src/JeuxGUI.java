@@ -56,13 +56,13 @@ public class JeuxGUI {
 				break;
 			case "jim":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de l'Immigration");
-				System.out.println("Entrer le nombre d'état par cellule (int) [1..10]");
+				System.out.println("Entrer le nombre d'états possibles par cellule (int) [2..10]");
 				int nei = sc.nextInt();
 				while ( nei<1 || nei>10) {
-					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
+					System.out.println("Veuillez entrer un (int) entre [2..10]"); 
 					nei = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLUE);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
 				CellulesIm ci = new CellulesIm(nbLignes, nbColonnes , nei);
 				CellulesEvent cei = new CellulesEvent(ci, 1, eventManager );
 				CellulesSimulator jim = new CellulesSimulator(	ci,
@@ -75,10 +75,10 @@ public class JeuxGUI {
 
 			case "jseg":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de la Ségrégation");
-				System.out.println("Entrer le nombre d'état par cellule (int) [1..10]");
+				System.out.println("Entrer le nombre d'états possibles par cellule (int) [2..10]");
 				int neS = sc.nextInt();
 				while ( neS<1 || neS>10) {
-					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
+					System.out.println("Veuillez entrer un (int) entre [2..10]"); 
 					neS = sc.nextInt();
 				}
 				System.out.println("Entrer le facteur de segregation (int) [1..8]"); 
@@ -87,7 +87,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [1..8]"); 
 					k = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLUE);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
 				CellulesSeg cS = new CellulesSeg(nbLignes, nbColonnes , neS, k);
 				CellulesEvent ceS = new CellulesEvent(cS, 1, eventManager );
 				CellulesSimulator jseg = new CellulesSimulator(	cS,
@@ -124,7 +124,7 @@ public class JeuxGUI {
 						delai[i] = sc.nextInt();
 					}
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLUE);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
                 BBEvent boidsEvents = new BBEvent(groupesBoids, 1, eventManager, delai, -1);
                 BBSimulator b = new BBSimulator(window,
 												groupesBoids,
@@ -161,7 +161,7 @@ public class JeuxGUI {
 						delaiB[i] = sc.nextInt();
 					}
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLUE);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
                 BBEvent ballesEvents = new BBEvent(groupesBalles, 1, eventManager, delaiB, -1);
                 BBSimulator bb = new BBSimulator(window,
 												groupesBalles,
