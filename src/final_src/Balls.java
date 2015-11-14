@@ -17,11 +17,10 @@ public class Balls {
 	public Balls(int n){ 
 		Point[] b = new Point[n];
 		for(int i=0; i<n; i++){
-			b[i] = new Point();
+			b[i] = new Point((int)(Math.random()*Xmax),(int)(Math.random()*Ymax));
 		}
 		this.setNbBalls(n);
 		this.setBalls(b);
-		this.reInit();
 		this.setSensX(n);
 		this.setSensY(n);
 	}

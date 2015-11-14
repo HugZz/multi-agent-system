@@ -22,7 +22,7 @@ public class Boids extends Balls
 		super(n);
 		Vect2D[] v = new Vect2D[n];
 		for(int i=0; i<n; i++){
-			v[i] = new Vect2D();
+			v[i] = new Vect2D((int)(Math.random()*Xmax),(int)(Math.random()*Ymax) );
 		}
 		this.setVitessesB(v);
 	}
@@ -87,6 +87,7 @@ public class Boids extends Balls
             this.getBalls()[j].setLocation( (int)tmpB[j].getX(),(int)tmpB[j].getY() );
         }
     }
+	@Override
     /**
      * Remet tous les boids dans leur état de départ
      */
