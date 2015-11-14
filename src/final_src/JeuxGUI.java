@@ -44,7 +44,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [0..100]\n"); 
 					p = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLUE);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
 				CellulesVie c = new CellulesVie(nbLignes, nbColonnes , p);
 				CellulesEvent ce = new CellulesEvent(c, 1, eventManager );
 				CellulesSimulator jdv = new CellulesSimulator(	c,
