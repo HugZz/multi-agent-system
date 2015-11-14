@@ -1,8 +1,8 @@
 # Ensimag 2A POO - TP 2015/16
 # ============================
-# EDITER BY :
+# EDITE PAR :
 # LUCAS MAHIEU 
-# HUGUES DEVALON 
+# HUGUES DE VALON 
 # ============================
 #
 # Ce Makefile permet de compiler le test de l'ihm en ligne de commande.
@@ -25,25 +25,19 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testGUI jeuxGUI
+all: testGUI exeJeuxGUI
 
-testGUI:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI.java
 jeuxGUI:
 	javac -d bin -classpath bin/gui.jar -sourcepath src/ src/JeuxGUI.java
-
-all: testGUI feuxGUI
 
 # Execution:
 # on peut taper directement la ligne de commande :
 #   > java -classpath bin TestGUI
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
-exeTestGUI:
-	java -classpath bin:bin/gui.jar TestGUI
+
 exeJeuxGUI:
 	java -classpath bin:bin/gui.jar JeuxGUI
 
 clean:
 	rm -rf bin/*.class
-

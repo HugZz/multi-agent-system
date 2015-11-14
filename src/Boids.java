@@ -1,5 +1,6 @@
 import java.awt.Point;
 
+
 public class Boids extends Balls
 {
 	private Vect2D [] vitessesB;
