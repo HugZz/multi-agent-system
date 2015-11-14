@@ -19,6 +19,8 @@ public class JeuxGUI {
         int hauteur = 750;
 		int tailleCellule = 5;
 
+		GUISimulator window = new GUISimulator(largeur,hauteur, Color.BLUE);
+
 		String nomJeu = new String("");
 		Scanner sc = new Scanner(System.in);
 
@@ -36,12 +38,11 @@ public class JeuxGUI {
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de la Vie de Conway");
 				System.out.println("Entrer le pourcentage de cases Vivantes à l'initialisation [0..100]");
 				int p = sc.nextInt();
-				while ( d<0 && d>100) {
+				while ( p<0 && p>100) {
 					System.out.println("Veuillez entrer un (int) entre [0..100]\n"); 
 					p = sc.nextInt();
 				}
-				GUISimulator window = new GUISimulator(largeur,hauteur, Color.BLUE);
-				Cellules c = new CellulesVie(nbLignes, nbColonnes , p);
+				CellulesVie c = new CellulesVie(nbLignes, nbColonnes , p);
 				CellulesEvent ce = new CellulesEvent(c, 1, new EventManager() );
 				CellulesSimulator jdv = new CellulesSimulator(	c,
 																tailleCellule,
@@ -52,29 +53,27 @@ public class JeuxGUI {
 			case "jim":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de l'Immigration");
 				System.out.println("Entrer le nombre d'état par cellule (int) [1..10]");
-				int ne = sc.nextInt();
-				while ( ne<1 && ne>10) {
+				int nei = sc.nextInt();
+				while ( nei<1 && nei>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
-					ne = sc.nextInt();
+					nei = sc.nextInt();
 				}
-				GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
-				Cellules c = new CellulesIm(nbLignes, nbColonnes , ne);
-				CellulesEvent ce = new CellulesEvent(c, 1, new EventManager() );
-				CellulesSimulator jdv = new CellulesSimulator(	c,
+				CellulesIm ci = new CellulesIm(nbLignes, nbColonnes , nei);
+				CellulesEvent cei = new CellulesEvent(ci, 1, new EventManager() );
+				CellulesSimulator jim = new CellulesSimulator(	ci,
 																tailleCellule,
 																window,
-																ce ); 
-				CellulesSimulator jim = new CellulesSimulator2(nbLignes, nbColonnes ,tailleCellule, ne, window); 
+																cei ); 
 				window.setSimulable(jim);
 				break;
 
 			case "jseg":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de la Ségrégation");
 				System.out.println("Entrer le nombre d'état par cellule (int) [1..10]");
-				int ne = sc.nextInt();
-				while ( ne<1 && ne>10) {
+				int neS = sc.nextInt();
+				while ( neS<1 && neS>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
-					ne = sc.nextInt();
+					neS = sc.nextInt();
 				}
 				System.out.println("Entrer le facteur de segregation (int) [1..8]"); 
 				int k = sc.nextInt();
@@ -82,14 +81,12 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [1..8]"); 
 					k = sc.nextInt();
 				}
-				GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
-				Cellules c = new CellulesVie(nbLignes, nbColonnes , ne, k);
-				CellulesEvent ce = new CellulesEvent(c, 1, new EventManager() );
-				CellulesSimulator jdv = new CellulesSimulator(	c,
+				CellulesSeg cS = new CellulesSeg(nbLignes, nbColonnes , neS, k);
+				CellulesEvent ceS = new CellulesEvent(cS, 1, new EventManager() );
+				CellulesSimulator jseg = new CellulesSimulator(	cS,
 																tailleCellule,
 																window,
-																ce ); 
-				HabitationsSimulator jseg = new HabitationsSimulator(nbLignes, nbColonnes,tailleCellule, ne, k, window); 
+																ceS ); 
 				window.setSimulable(jseg);
 				break;
 
@@ -99,31 +96,30 @@ public class JeuxGUI {
 				int nbGroupe = sc.nextInt();
 				while ( nbGroupe<1 && nbGroupe>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
-					ne = sc.nextInt();
+					nbGroupe = sc.nextInt();
 				}
-				GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
-				Boids[] groupesBoids = new Boids[ne];
-				int[] delai = new int[ne];
-				BBSimulator[] b = new BBSimulator[ne];
+				Boids[] groupesBoids = new Boids[nbGroupe];
+				int[] delai = new int[nbGroupe];
+				BBSimulator[] b = new BBSimulator[nbGroupe];
+				int nbBoids = 0; 
 				for (int i=0;i<nbGroupe ;i++ ) {
 					System.out.println("Entrer le nombre de Boids (int) [1..500] pour le  groupe " + i); 
-					int ne = sc.nextInt();
-					while ( ne<1 && ne>500) {
+					nbBoids = sc.nextInt();
+					while ( nbBoids<1 && nbBoids>500) {
 						System.out.println("Veuillez entrer un (int) entre [1..500]"); 
-						ne = sc.nextInt();
+						 nbBoids = sc.nextInt();
 					}
 					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
-					int delai[i] = sc.nextInt();
+					delai[i] = sc.nextInt();
 					while ( delai[i]<1 && delai[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
 						delai[i] = sc.nextInt();
 					}
-					Boids groupesBoids[i] = new Boids(ne);
+					groupesBoids[i] = new Boids(nbBoids);
 					BBEvent boidsEvents = new BBEvent(groupesBoids[i], 1, new EventManager(), delai[i]);
-
-					BBSimulator b[i] = new BBSimulator(	window,
-														groupesBoids[i],
-														boidsEvents ); 
+					b[i] = new BBSimulator(	window,
+											groupesBoids[i],
+											boidsEvents ); 
 					//b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
 					window.setSimulable(b[i]);
 				}
@@ -133,47 +129,45 @@ public class JeuxGUI {
 			case "jballes":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de Balles");
 				System.out.println("Entrer le nombre de Groupe de Balles (int) [1..10]"); 
-				int nbGroupe = sc.nextInt();
-				while ( nbGroupe<1 && nbGroupe>10) {
+				int nbGroupesBalles = sc.nextInt();
+				while ( nbGroupesBalles<1 && nbGroupesBalles>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
-					ne = sc.nextInt();
+					nbGroupesBalles = sc.nextInt();
 				}
-				GUISimulator window = new GUISimulator(largeur, hauteur, Color.WHITE);
-				Boids[] groupesBalles = new Balls[ne];
-				int[] delai = new int[ne];
-				BBSimulator[] b = new BBSimulator[ne];
-				for (int i=0;i<nbGroupe ;i++ ) {
+				Balls[] groupesBalles = new Balls[nbGroupesBalles];
+				int[] delaiB = new int[nbGroupesBalles];
+				BBSimulator[] bb = new BBSimulator[nbGroupesBalles];
+				int nbBalles = 0;
+				for (int i=0;i<nbGroupesBalles ;i++ ) {
 					System.out.println("Entrer le nombre de Balles (int) [1..50] pour le  groupe " + i); 
-					int ne = sc.nextInt();
-					while ( ne<1 && ne>50) {
+					nbBalles = sc.nextInt();
+					while ( nbBalles<1 && nbBalles>50) {
 						System.out.println("Veuillez entrer un (int) entre [1..50]"); 
-						ne = sc.nextInt();
+						nbBalles = sc.nextInt();
 					}
 					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
-					int delai[i] = sc.nextInt();
-					while ( delai[i]<1 && delai[i]>20) {
+					delaiB[i] = sc.nextInt();
+					while ( delaiB[i]<1 && delaiB[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
-						delai[i] = sc.nextInt();
+						delaiB[i] = sc.nextInt();
 					}
-					Balls groupesBalles[i] = new Balls(ne);
-					BBEvent boidsEvents = new BBEvent(groupesBalles[i], 1, new EventManager(), delai[i]);
+					groupesBalles[i] = new Balls(nbBalles);
+					BBEvent boidsEvents = new BBEvent(groupesBalles[i], 1, new EventManager(), delaiB[i]);
 
-					BBSimulator b[i] = new BBSimulator(	window,
-														groupesBalles[i],
-														boidsEvents ); 
+					bb[i] = new BBSimulator(window,
+											groupesBalles[i],
+											boidsEvents ); 
 					//b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
-					window.setSimulable(b[i]);
+					window.setSimulable(bb[i]);
 				}
-	
 				break;
+
 			case "exit":
-				System.out.println("\nVous avez demander de quitter, Bye Bye" + i); 
+				System.out.println("\nVous avez demander de quitter, Bye Bye" ); 
 				return;
-				break;
 			default :
-				System.out.println("\nVous n'avez pas entré le nom d'un jeu valide... Relancer le jeu" + i); 
+				System.out.println("\nVous n'avez pas entré le nom d'un jeu valide... Relancer le jeu"); 
 				return;
-				break;
 		}
     }
 }

@@ -8,6 +8,6 @@ public class CellulesEvent extends Event {
 
     public void execute() {
         this.plateau.actualiser();
-        super.getManager().addEvent(new CellulesEvent(this.plateau, super.getDate() + 1, this.manager));
+        super.getManager().addEvent(new CellulesEvent(this.plateau, super.getDate() + 1, this.getManager()));
     }
 }

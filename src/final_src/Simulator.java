@@ -1,16 +1,18 @@
 import gui.*;
 import java.awt.Color;
 
-public abstract class Simulator implements gui.Simulable {
+public abstract class Simulator implements Simulable {
     private GUISimulator simulator;
     private EventManager manager;
     private Event event;
+	private ColorTable colorTable;
 
     public Simulator(GUISimulator simulator, Event event) {
         this.simulator = simulator;
         this.manager = new EventManager();
         this.event = event;
         this.manager.addEvent(event);
+		this.setColorTable();
     }
 
     public GUISimulator getGUI() {
@@ -21,9 +23,9 @@ public abstract class Simulator implements gui.Simulable {
         return this.manager;
     }
 
-    public abstract void affiche();
+    abstract public  void affiche();
     // Inutile si classe père entre Balles et Cellules
-    public abstract void reInit();
+    abstract public void reInit();
 
     @Override
     public void next() {
@@ -40,6 +42,30 @@ public abstract class Simulator implements gui.Simulable {
         this.simulator.reset();
         this.affiche();
     }
+	/**
+	 * Creer la table des corespondance : Entier -> Couleurs
+	 * @param ne
+	 * 		Créera une table de correspondance pour les états
+	 */
+	private void setColorTable() {
+		ColorTable ct = new ColorTable();
+		ct.associer(0, Color.BLUE);
+		ct.associer(1, Color.RED);
+		ct.associer(2, Color.YELLOW);
+		ct.associer(3, Color.GREEN);
+		ct.associer(4, Color.ORANGE);
+		ct.associer(5, Color.MAGENTA);
+		ct.associer(6, Color.PINK);
+		ct.associer(7, Color.BLACK);
+		ct.associer(8, Color.GRAY);
+		ct.associer(9, Color.DARK_GRAY);
+		ct.associer(10,Color.LIGHT_GRAY);
+		this.colorTable = ct;
+		System.out.println(this.colorTable.toString());
+	}
+	private ColorTable getColorTable(){
+		return this.colorTable;
+	}
 
     /**
      * Méthode qui donne une couleur en fonction de l'entrée
@@ -49,20 +75,6 @@ public abstract class Simulator implements gui.Simulable {
      *      Couleur correspondante à cet état
      */
     public Color getColorEtat(int e) {
-        if( e == -1 ) { return Color.BLUE;}
-        if( e == 0 ) { return Color.WHITE;}
-        if( e == 1 ) { return Color.BLACK;}
-        if( e == 2 ) { return Color.RED;}
-        if( e == 3 ) { return Color.YELLOW;}
-        if( e == 4 ) { return Color.GREEN;}
-        if( e == 5 ) { return Color.PINK;}
-        if( e == 6 ) { return Color.GRAY;}
-        if( e == 7 ) { return Color.ORANGE;}
-        if( e == 8 ) { return Color.MAGENTA;}
-        if( e == 9 ) { return Color.DARK_GRAY;}
-        if( e == 10) { return Color.LIGHT_GRAY;}
-        else {
-            throw new RuntimeException("ERREUR(couleur) l'état est forcement dans ]1:10]!!!");
-        }
+		return this.getColorTable().obtenirColor(e);
     }
 }

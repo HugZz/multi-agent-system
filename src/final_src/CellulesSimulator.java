@@ -4,7 +4,6 @@ import java.awt.Color;
 public class CellulesSimulator extends Simulator {
     private Cellules plateau;
     private int tailleCellule;
-    private ColorTable colorTable;
 
     public CellulesSimulator(Cellules plateau, int tailleCellule, GUISimulator simulator, Event event) {
         super(simulator, event);
@@ -19,8 +18,9 @@ public class CellulesSimulator extends Simulator {
     private void setTailleCellule(int t){
         this.tailleCellule = t;
     }
+  
 
-    void reInit() {
+	public void reInit() {
         this.plateau.reInit();
     }
 
