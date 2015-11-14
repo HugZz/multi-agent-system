@@ -3,8 +3,8 @@ import java.util.PriorityQueue;
 /**
  * EventManager gère tous les évènements des systèmes multi-agents.
  *
- * @author Hugues de Valon
  * @author Lucas Mahieu
+ * @author Hugues de Valon
  */
 
 public class EventManager
@@ -29,7 +29,7 @@ public class EventManager
 
     /**
      * Ajoute l'évènement à la liste.
-     * @param toAdd Evenement à ajouter.
+     * @param toAdd Evenement à ajouter
      */
     public void addEvent(Event toAdd)
     {
@@ -58,7 +58,7 @@ public class EventManager
 
     /**
      * Vérifie si il n'y a plus d'évènements à executer.
-     * @return 1 si c'est fini, 0 sinon.
+     * @return 1 si c'est fini, 0 sinon
      */
     public boolean isFinished()
     {

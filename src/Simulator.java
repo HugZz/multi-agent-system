@@ -1,12 +1,35 @@
 import gui.*;
 import java.awt.Color;
 
+/**
+ * Classe abstraite qui gère la partie affichage des systèmes.
+ * @author Lucas Mahieu
+ * @author Hugues de Valon
+ */
 public abstract class Simulator implements Simulable {
+    /**
+     * GUI du système.
+     */
     private GUISimulator simulator;
+    /**
+     * Manager des évènements.
+     */
     private EventManager manager;
+    /**
+     * Evènement à executer.
+     */
     private Event event;
+    /**
+     * Table d'association des couleurs.
+     */
 	private ColorTable colorTable;
 
+    /**
+     * Constructeur : Initialise les attributs et ajoute le premier évènement.
+     * @param simulator GUI du sytème.
+     * @param event Premier évènement du système.
+     * @param manager Manager d'évènements.
+     */
     public Simulator(GUISimulator simulator, Event event, EventManager manager) {
         this.simulator = simulator;
         this.manager = manager;
@@ -15,18 +38,31 @@ public abstract class Simulator implements Simulable {
 		this.setColorTable();
     }
 
+    /**
+     * Accesseur du GUI.
+     * @return GUI du système
+     */
     public GUISimulator getGUI() {
         return this.simulator;
     }
 
+    /**
+     * Accesseur du manager d'évènements.
+     * @return Manager des évènements.
+     */
     public EventManager getManager() {
         return this.manager;
     }
 
-    abstract public  void affiche();
-    // Inutile si classe père entre Balles et Cellules
-    abstract public void reInit();
+    /**
+     * Méthode qui définit la méthode d'affichage du système.
+     */
+    abstract public void affiche();
 
+    /**
+     * Cette classe s'éxecute lorsque l'utilisateur clique sur le bouton
+     * "Suivant", elle actualise le système et l'affiche.
+     */
     @Override
     public void next() {
         this.manager.next();
@@ -34,6 +70,10 @@ public abstract class Simulator implements Simulable {
         this.affiche();
     }
 
+    /**
+     * Cette classe s'execute lorsque l'utilisateur clique sur le bouton
+     * "Début" du GUI, elle redémarre le système avec ses valeurs par défaut.
+     */
     @Override
     public void restart(){
         this.manager.restart();
@@ -64,6 +104,10 @@ public abstract class Simulator implements Simulable {
 		this.colorTable = ct;
 		//System.out.println(this.colorTable.toString());
 	}
+    /**
+     * Accesseur sur la table des couleurs.
+     * @return Table des couleurs.
+     */
 	private ColorTable getColorTable(){
 		return this.colorTable;
 	}
