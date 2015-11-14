@@ -85,7 +85,7 @@ public class Boids extends Balls
 
             tmpB[i].setLocation(	this.getPx(i) + this.getVx(i) ,
 									this.getPy(i) + this.getVy(i) ); 
-            limiteP(tmpB[i]);
+            limiteP(tmpB[i],tmpV[i]);
         }
         for(int j=0; j<n; j++){
             this.getVitessesB()[j].setV( (int)tmpV[j].getX(),(int)tmpV[j].getY() );
@@ -104,21 +104,21 @@ public class Boids extends Balls
         }
     }
 
-    public void limiteP(Point p) 
+    public void limiteP(Point p, Vect2D v) 
     {
         int X = Xmax;
         int Y = Ymax;
         int x = Xmin;
         int y = Ymin;
         if (p.getX() > X ){
-            p.setLocation(x+5,p.getY());
+            v.setV((int) (-v.getX()), (int)v.getY());
         }else if(p.getX() < x) {
-            p.setLocation(X-5,p.getY());
+            v.setV((int)( -v.getX()), (int)v.getY());
         }
         if (p.getY() > Y ){
-            p.setLocation(p.getX(),y+5);
+            v.setV((int) v.getX(),(int)(-v.getY()) );
         }else if(p.getY() < y) {
-            p.setLocation(p.getX(),Y-5);
+            v.setV((int)(v.getX()),(int)(-v.getY()) );
         }
     }
 

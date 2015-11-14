@@ -14,6 +14,33 @@
 		return this.pourcentage;
 	}
 	/**
+     * Donne le nombre de voisin à la cellule (i,k)
+     * @param i
+     *      ligne de la cellule
+     * @param k
+     *      colonne de la cellule
+     */
+    public int nbVoisin(int i, int k){
+        int cpt = 0;
+        int b = i-1;
+        int h = i+1;
+        int d = k+1;
+        int g = k-1;
+        if( i==0 ) { b = (this.getNbL()-1);}
+        if( i==this.getNbL()-1 ) { h = 0;}
+        if( k==0) { g = (this.getNbC()-1);}
+        if( k==this.getNbC()-1 ) { d = 0;}
+        if ( this.getCellule(b,g) == 1 ) cpt++;
+        if ( this.getCellule(i,g) == 1 ) cpt++;
+        if ( this.getCellule(h,g) == 1 ) cpt++;
+        if ( this.getCellule(b,k) == 1 ) cpt++;
+        if ( this.getCellule(h,k) == 1 ) cpt++;
+        if ( this.getCellule(b,d) == 1 ) cpt++;
+        if ( this.getCellule(i,d) == 1 ) cpt++;
+        if ( this.getCellule(h,d) == 1 ) cpt++;
+        return cpt;
+    }
+	/**
 	 *
 	 */
 	public void actualiser (){
