@@ -22,19 +22,17 @@ public class JeuxGUI {
 
 		String nomJeu = new String("");
 		Scanner sc = new Scanner(System.in);
-		System.out.println("\n");
-		System.out.println("\n");
-		System.out.println("Bienvenue à vous, nous vous proposons plusieurs jeux :");
-		System.out.println("Pour lancer le Jeu de la Vie de Conway entrer 'jdv'");
-		System.out.println("Pour lancer le Jeu de l'Immigration entrer 'jim'");
-		System.out.println("Pour lancer le Jeu de la Ségrégation entrer 'jseg'");
-		System.out.println("Pour lancer le Jeu de Boids entrer 'jboids'");
-		System.out.println("Pour lancer le Jeu de Balles entrer 'jballes'");
-		System.out.println("Pour quitter entrer 'exit'");
-
 		for (int j=0; j<20 ;j++ ) {
 			System.out.println("\n");
 		}
+		System.out.println("Bienvenue à vous, nous vous proposons plusieurs jeux :\n");
+		System.out.println("Pour lancer le Jeu de la Vie de Conway entrer : 'jdv'");
+		System.out.println("Pour lancer le Jeu de l'Immigration entrer    : 'jim'");
+		System.out.println("Pour lancer le Jeu de la Ségrégation entrer   : 'jseg'");
+		System.out.println("Pour lancer le Jeu de Boids entrer            : 'jboids'");
+		System.out.println("Pour lancer le Jeu de Balles entrer           : 'jballes'");
+		System.out.println("Pour quitter entrer                           : 'exit'");
+
 		nomJeu = sc.nextLine();
 
 		GUISimulator window = null;
@@ -118,18 +116,20 @@ public class JeuxGUI {
 						System.out.println("Veuillez entrer un (int) entre [1..500]"); 
 						 nbBoids = sc.nextInt();
 					}
+					groupesBoids[i] = new Boids(nbBoids);
 					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
 					delai[i] = sc.nextInt();
 					while ( delai[i]<1 && delai[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
 						delai[i] = sc.nextInt();
 					}
-					window = new GUISimulator(largeur,hauteur, Color.BLUE);
-					groupesBoids[i] = new Boids(nbBoids);
+				}
+				window = new GUISimulator(largeur,hauteur, Color.BLUE);
+				for (int i=0; i<nbGroupe ; i++ ) {
 					BBEvent boidsEvents = new BBEvent(groupesBoids[i], 1, eventManager, delai[i]);
 					b[i] = new BBSimulator(	window,
-											groupesBoids[i],
-											boidsEvents ); 
+							groupesBoids[i],
+							boidsEvents ); 
 					//b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
 					window.setSimulable(b[i]);
 				}
@@ -155,15 +155,17 @@ public class JeuxGUI {
 						System.out.println("Veuillez entrer un (int) entre [1..50]"); 
 						nbBalles = sc.nextInt();
 					}
+					groupesBalles[i] = new Balls(nbBalles);
 					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
 					delaiB[i] = sc.nextInt();
 					while ( delaiB[i]<1 && delaiB[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
 						delaiB[i] = sc.nextInt();
 					}
-					groupesBalles[i] = new Balls(nbBalles);
+				}
+				window = new GUISimulator(largeur,hauteur, Color.BLUE);
+				for (int i=0; i<nbGroupesBalles ;i++ ) {
 					BBEvent boidsEvents = new BBEvent(groupesBalles[i], 1, eventManager, delaiB[i]);
-					window = new GUISimulator(largeur,hauteur, Color.BLUE);
 					bb[i] = new BBSimulator(window,
 											groupesBalles[i],
 											boidsEvents ); 

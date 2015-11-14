@@ -61,7 +61,7 @@ public abstract class Simulator implements Simulable {
 		ct.associer(9, Color.DARK_GRAY);
 		ct.associer(10,Color.LIGHT_GRAY);
 		this.colorTable = ct;
-		System.out.println(this.colorTable.toString());
+		//System.out.println(this.colorTable.toString());
 	}
 	private ColorTable getColorTable(){
 		return this.colorTable;
