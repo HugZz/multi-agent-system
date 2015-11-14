@@ -38,7 +38,7 @@ public abstract class Simulator implements gui.Simulable {
         this.reInit();
         this.manager.addEvent(this.event);
         this.simulator.reset();
-        this.affiche;
+        this.affiche();
     }
 
     /**
