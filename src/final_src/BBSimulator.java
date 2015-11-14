@@ -12,8 +12,8 @@ public class BBSimulator extends Simulator {
         this.balls = b;
     }
 
-    public BBSimulator(GUISimulator simulator, Balls balles, Event event) {
-        super(simulator, event);
+    public BBSimulator(GUISimulator simulator, Balls balles, Event event, EventManager manager) {
+        super(simulator, event, manager);
         this.setBalls(balles);
     }
 

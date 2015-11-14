@@ -99,7 +99,7 @@ public class Balls {
 	}
 
 	public void actualiser() {
-		this.translate((int)(Math.random()*10),(int)(Math.random()*10));
+		this.translate(4,10);
 	}
 
 	@Override
