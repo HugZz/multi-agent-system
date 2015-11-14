@@ -30,7 +30,7 @@ all: testGUI jeuxGUI
 testGUI:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI.java
 jeuxGUI:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/final_src src/final_src/JeuxGUI.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src/ src/JeuxGUI.java
 
 all: testGUI feuxGUI
 
