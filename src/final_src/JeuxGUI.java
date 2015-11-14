@@ -108,7 +108,6 @@ public class JeuxGUI {
 				}
 				Boids[] groupesBoids = new Boids[nbGroupe];
 				int[] delai = new int[nbGroupe];
-				BBSimulator[] b = new BBSimulator[nbGroupe];
 				int nbBoids = 0; 
 				for (int i=0;i<nbGroupe ;i++ ) {
 					System.out.println("Entrer le nombre de Boids (int) [1..500] pour le  groupe " + i); 
@@ -126,15 +125,13 @@ public class JeuxGUI {
 					}
 				}
 				window = new GUISimulator(largeur,hauteur, Color.BLUE);
-				for (int i=0; i<nbGroupe ; i++ ) {
-					BBEvent boidsEvents = new BBEvent(groupesBoids[i], 1, eventManager, delai[i]);
-					b[i] = new BBSimulator(	window,
-											groupesBoids[i],
-											boidsEvents,
-                                            eventManager); 
-					//b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
-					window.setSimulable(b[i]);
-				}
+                BBEvent boidsEvents = new BBEvent(groupesBoids, 1, eventManager, delai);
+                BBSimulator b = new BBSimulator(window,
+												groupesBoids,
+												boidsEvents,
+												eventManager); 
+                //b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
+                window.setSimulable(b);
 
 				break;
 
@@ -148,7 +145,6 @@ public class JeuxGUI {
 				}
 				Balls[] groupesBalles = new Balls[nbGroupesBalles];
 				int[] delaiB = new int[nbGroupesBalles];
-				BBSimulator[] bb = new BBSimulator[nbGroupesBalles];
 				int nbBalles = 0;
 				for (int i=0;i<nbGroupesBalles ;i++ ) {
 					System.out.println("Entrer le nombre de Balles (int) [1..50] pour le  groupe " + i); 
@@ -166,15 +162,13 @@ public class JeuxGUI {
 					}
 				}
 				window = new GUISimulator(largeur,hauteur, Color.BLUE);
-				for (int i=0; i<nbGroupesBalles ;i++ ) {
-					BBEvent ballsEvents = new BBEvent(groupesBalles[i], 1, eventManager, delaiB[i]);
-					bb[i] = new BBSimulator(window,
-											groupesBalles[i],
-											ballsEvents,
-                                            eventManager); 
-					//b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
-					window.setSimulable(bb[i]);
-				}
+                BBEvent ballesEvents = new BBEvent(groupesBalles, 1, eventManager, delaiB);
+                BBSimulator bb = new BBSimulator(window,
+												groupesBalles,
+												ballesEvents,
+												eventManager); 
+                //b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
+                window.setSimulable(bb);
 				break;
 
 			case "exit":

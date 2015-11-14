@@ -49,7 +49,7 @@ public abstract class Simulator implements Simulable {
 	 */
 	private void setColorTable() {
 		ColorTable ct = new ColorTable();
-		ct.associer(-1, Color.LIGHT_GRAY);
+		ct.associer(-1, Color.WHITE);
 		ct.associer(0, Color.BLUE);
 		ct.associer(1, Color.RED);
 		ct.associer(2, Color.YELLOW);
