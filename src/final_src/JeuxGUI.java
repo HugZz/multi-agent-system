@@ -40,7 +40,7 @@ public class JeuxGUI {
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de la Vie de Conway");
 				System.out.println("Entrer le pourcentage de cases Vivantes à l'initialisation [0..100]");
 				int p = sc.nextInt();
-				while ( p<0 && p>100) {
+				while ( p<0 || p>100) {
 					System.out.println("Veuillez entrer un (int) entre [0..100]\n"); 
 					p = sc.nextInt();
 				}
@@ -58,7 +58,7 @@ public class JeuxGUI {
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de l'Immigration");
 				System.out.println("Entrer le nombre d'état par cellule (int) [1..10]");
 				int nei = sc.nextInt();
-				while ( nei<1 && nei>10) {
+				while ( nei<1 || nei>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
 					nei = sc.nextInt();
 				}
@@ -77,13 +77,13 @@ public class JeuxGUI {
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de la Ségrégation");
 				System.out.println("Entrer le nombre d'état par cellule (int) [1..10]");
 				int neS = sc.nextInt();
-				while ( neS<1 && neS>10) {
+				while ( neS<1 || neS>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
 					neS = sc.nextInt();
 				}
 				System.out.println("Entrer le facteur de segregation (int) [1..8]"); 
 				int k = sc.nextInt();
-				while ( k<1 && k>9) {
+				while ( k<1 || k>9) {
 					System.out.println("Veuillez entrer un (int) entre [1..8]"); 
 					k = sc.nextInt();
 				}
@@ -102,7 +102,7 @@ public class JeuxGUI {
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de Boids");
 				System.out.println("Entrer le nombre de groupes de Boids (int) [1..10]"); 
 				int nbGroupe = sc.nextInt();
-				while ( nbGroupe<1 && nbGroupe>10) {
+				while ( nbGroupe<1 || nbGroupe>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
 					nbGroupe = sc.nextInt();
 				}
@@ -113,14 +113,14 @@ public class JeuxGUI {
 				for (int i=0;i<nbGroupe ;i++ ) {
 					System.out.println("Entrer le nombre de Boids (int) [1..500] pour le  groupe " + i); 
 					nbBoids = sc.nextInt();
-					while ( nbBoids<1 && nbBoids>500) {
+					while ( nbBoids<1 || nbBoids>500) {
 						System.out.println("Veuillez entrer un (int) entre [1..500]"); 
 						 nbBoids = sc.nextInt();
 					}
 					groupesBoids[i] = new Boids(nbBoids);
 					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
 					delai[i] = sc.nextInt();
-					while ( delai[i]<1 && delai[i]>20) {
+					while ( delai[i]<1 || delai[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
 						delai[i] = sc.nextInt();
 					}
@@ -142,7 +142,7 @@ public class JeuxGUI {
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de Balles");
 				System.out.println("Entrer le nombre de groupes de Balles (int) [1..10]"); 
 				int nbGroupesBalles = sc.nextInt();
-				while ( nbGroupesBalles<1 && nbGroupesBalles>10) {
+				while ( nbGroupesBalles<1 || nbGroupesBalles>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
 					nbGroupesBalles = sc.nextInt();
 				}
@@ -153,14 +153,14 @@ public class JeuxGUI {
 				for (int i=0;i<nbGroupesBalles ;i++ ) {
 					System.out.println("Entrer le nombre de Balles (int) [1..50] pour le  groupe " + i); 
 					nbBalles = sc.nextInt();
-					while ( nbBalles<1 && nbBalles>50) {
+					while ( nbBalles<1 || nbBalles>50) {
 						System.out.println("Veuillez entrer un (int) entre [1..50]"); 
 						nbBalles = sc.nextInt();
 					}
 					groupesBalles[i] = new Balls(nbBalles);
 					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
 					delaiB[i] = sc.nextInt();
-					while ( delaiB[i]<1 && delaiB[i]>20) {
+					while ( delaiB[i]<1 || delaiB[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
 						delaiB[i] = sc.nextInt();
 					}
