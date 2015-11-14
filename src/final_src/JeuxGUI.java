@@ -125,7 +125,7 @@ public class JeuxGUI {
 					}
 				}
 				window = new GUISimulator(largeur,hauteur, Color.BLUE);
-                BBEvent boidsEvents = new BBEvent(groupesBoids, 1, eventManager, delai);
+                BBEvent boidsEvents = new BBEvent(groupesBoids, 1, eventManager, delai, -1);
                 BBSimulator b = new BBSimulator(window,
 												groupesBoids,
 												boidsEvents,
@@ -162,7 +162,7 @@ public class JeuxGUI {
 					}
 				}
 				window = new GUISimulator(largeur,hauteur, Color.BLUE);
-                BBEvent ballesEvents = new BBEvent(groupesBalles, 1, eventManager, delaiB);
+                BBEvent ballesEvents = new BBEvent(groupesBalles, 1, eventManager, delaiB, -1);
                 BBSimulator bb = new BBSimulator(window,
 												groupesBalles,
 												ballesEvents,
