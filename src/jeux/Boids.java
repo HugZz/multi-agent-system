@@ -3,7 +3,6 @@ import java.awt.Point;
 public class Boids extends Balls
 {
 	private Vect2D [] vitessesB;
-	private int nbBoids;
 	//Pourcentage  voulu de l'action de la cohesion sur les boid : 1=1%
 	private int kC = 2;
 	//Pourcentage  voulu de l'action de la l'alignement  sur les boid : 1=1%
@@ -21,7 +20,7 @@ public class Boids extends Balls
 	 */
 	public Boids(int n){ 
 		super(n);
-		v = new Vect2D[n];
+		Vect2D[] v = new Vect2D[n];
 		for(int i=0; i<n; i++){
 			v[i] = new Vect2D();
 		}
@@ -47,14 +46,14 @@ public class Boids extends Balls
 	 * @param i: numero de la boid dont on desire connaitre le x
 	 */
 	public int getVx(int i) {
-		return (this.getVitessesB[i].getVx()); 
+		return (int)(this.getVitessesB()[i].getX()) ; 
 	}
 	/**
 	 * Donne la composante sur Y de la vitesse du boid i
 	 * @param i: numero du boid dont on desire connaitre le y
 	 */
 	public int getVy(int i) {
-		return (this.getVitessesB[i].getVy());
+		return (int)(this.getVitessesB()[i].getY());
 	}
 	@Override
     /**
@@ -84,8 +83,8 @@ public class Boids extends Balls
             limiteP(tmpB[i]);
         }
         for(int j=0; j<n; j++){
-            this.getVitessesB[j].setV( tmpV[j].getX(),tmpV[j].getY() );
-            this.getBalls[j].setLocation( tmpB[j].getX(),tmpB[j].getY() );
+            this.getVitessesB()[j].setV( (int)tmpV[j].getX(),(int)tmpV[j].getY() );
+            this.getBalls()[j].setLocation( (int)tmpB[j].getX(),(int)tmpB[j].getY() );
         }
     }
     /**
@@ -94,8 +93,8 @@ public class Boids extends Balls
     public void reInit()
     {
 		super.reInit();
-        for(int i=0; i<this.getNbBoids() ; i++){
-            this.getVitessesB[i].setV( (int)(Math.Random()*5),(int)(Math.Random()*5));
+        for(int i=0; i<this.getNbBalls() ; i++){
+            this.getVitessesB()[i].setV( (int)(Math.random()*5),(int)(Math.random()*5) );
         }
     }
 
@@ -134,20 +133,21 @@ public class Boids extends Balls
      *  @return c
      *          Vecteur de force à appliqué au boid b à l'étape suivante
      */
-    public Vect2D cohesion(Boid b) 
+    public Vect2D cohesion(Point p, Vect2D v) 
     {
         //System.out.println("--------------------------------------------------------------------------------");
         Vect2D c = new Vect2D(0,0);
         int cmpt = 0;
         int d = 0;
-        Boid bi = new Boid();
-        for(int i=0; i<this.getNbBoids(); i++ ) {
-            bi = this.getFlock()[i];
+        Point pi = new Point();
+		int n = this.getNbBalls();
+        for(int i=0; i<n; i++ ) {
+            pi = this.getBalls()[i];
          //   System.out.println("bi =(" + bi.getPx() + ";" + bi.getPy() + ")" );
-            d = distance( bi.getP(), b.getP() );
+            d = distance( pi, p );
          //   System.out.println("boid: " + i + " d=" + d + " de b");
             if ( (d > 0) && (d < distanceVision) ) {
-                c.vAdd( bi.getP() );
+                c.vAdd( p );
          //       System.out.println("----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
                 cmpt++;
             }
@@ -155,9 +155,9 @@ public class Boids extends Balls
         if (cmpt > 0) {
             c.vDiv(cmpt);  // c = c/cmpt
            //     System.out.println("c = c/cmpt ----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
-            c.vSub( b.getP() );
+            c.vSub( p);
            //     System.out.println("c = c-b.pos ----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
-            c.vMult(kC);
+            c.vMult( kC );
            //     System.out.println("c = c*kc----" + "c=(" + c.getX() + ";" + c.getY() + ") \n" );
             c.vDiv(100);
         }
@@ -172,25 +172,26 @@ public class Boids extends Balls
      *  @return c
      *          Vecteur de force à appliqué au boid b à l'étape suivante
      */
-    public Vect2D alignement (Boid b) 
+    public Vect2D alignement(Point p, Vect2D v) 
     {
         Vect2D a = new Vect2D(0,0);
-        Boid bi = new Boid();
+        Point pi = new Point();
         int cmpt = 0;
         int d = 0;
-        for(int i=0; i<this.getNbBoids(); i++ ) {
-            bi = this.getFlock()[i];
-            d = distance( bi.getP(), b.getP() ); 
+		int n = super.getNbBalls();
+        for(int i=0; i<n; i++ ){
+            pi = this.getBalls()[i];
+            d = distance( pi, p ); 
             if ( (d>0) && (d<distanceVision) ) {
-                a.vAdd( bi.getV() );
+                a.vAdd( v );
                 cmpt++;
             }
         }
         if (cmpt > 0) {
             a.vDiv(cmpt); 
-            a.vSub(b.getV());
-            a.vMult(kA); 
-            a.vDiv(100); 
+            a.vSub( v );
+            a.vMult( kA ); 
+            a.vDiv( 100 ); 
         }
         return a;
     }
@@ -202,18 +203,19 @@ public class Boids extends Balls
      *  @return c
      *          Vecteur de force à appliqué au boid b à l'étape suivante
      */
-    public Vect2D separation (Boid b) 
+    public Vect2D separation(Point p, Vect2D v)
     {
         Vect2D s = new Vect2D(0,0);
         Vect2D tmp = new Vect2D(0,0);
-        Boid bi = new Boid();
+        Point pi = new Point();
         int d = 0 ;
-        for(int i=0; i<this.getNbBoids(); i++ ) {
-            bi = this.getFlock()[i];
-            d = distance( bi.getP(), b.getP() ); 
+		int n = this.getNbBalls();
+        for(int i=0; i<n; i++ ) {
+			pi = this.getBalls()[i];
+            d = distance( pi, p ); 
             if ( (d>0) && (d<dS) ) {
-                tmp.vAdd(b.getP());
-                tmp.vSub(bi.getP());
+                tmp.vAdd( pi );
+                tmp.vSub( p );
                 s.vSub( tmp );
             }
         }
