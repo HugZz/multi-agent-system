@@ -25,36 +25,14 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testGUI testBalls testBallsSimulator testGUI1 testCellules
+all: testGUI feuxGUI
 
 testGUI:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI.java
-testBalls:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestBalls.java
-testBallsSimulator:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestBallsSimulator.java
-testGUIBalls:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/balles src/balles/TestGUIBalls.java
-testCellules:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuDeLaVie src/jeuDeLaVie/TestCellules.java
-testGUICellules:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuDeLaVie src/jeuDeLaVie/TestGUICellules.java
-testCellules2:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuImmigration src/jeuImmigration/TestCellules2.java
-testGUICellules2:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/jeuImmigration src/jeuImmigration/TestGUICellules2.java
-testHabitations:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/segregation src/segregation/TestHabitations.java
-testGUIHabitations:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/segregation src/segregation/TestGUIHabitations.java
-testGUIBoids:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/boids src/boids/TestGUIBoids.java
-testEvents:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/events src/events/TestEventManager.java
-testGUIBoids2:
-	javac -d bin -classpath bin/gui.jar -sourcepath src/cohabitation src/cohabitation/TestGUIBoids2.java
+jeuxGUI:
+	javac -d bin -classpath bin/gui.jar -sourcepath src/final_src/ src/final_src/JeuxGUI.java
 
-all: testGUI testBalls testBallsSimulator testGUI1 testCellules
+all: testGUI feuxGUI
 
 # Execution:
 # on peut taper directement la ligne de commande :
@@ -63,30 +41,8 @@ all: testGUI testBalls testBallsSimulator testGUI1 testCellules
 #   > make exeIHM
 exeTestGUI:
 	java -classpath bin:bin/gui.jar TestGUI
-exeTestBalls:
-	java -classpath bin:bin/gui.jar TestBalls
-exeTestBallsSimulator:
-	java -classpath bin:bin/gui.jar TestBallsSimulator
-exeTestGUIBalls:
-	java -classpath bin:bin/gui.jar TestGUIBalls
-exeTestCellules:
-	java -classpath bin:bin/gui.jar TestCellules $(ARG1)
-exeTestGUICellules:
-	java -classpath bin:bin/gui.jar TestGUICellules $(ARG1)
-exeTestCellules2:
-	java -classpath bin:bin/gui.jar TestCellules2 $(ARG1)
-exeTestGUICellules2:
-	java -classpath bin:bin/gui.jar TestGUICellules2 $(ARG1)
-exeTestHabitations:
-	java -classpath bin:bin/gui.jar TestHabitations $(ARG1) $(ARG2)
-exeTestGUIHabitations:
-	java -classpath bin:bin/gui.jar TestGUIHabitations $(ARG1) $(ARG2)
-exeTestGUIBoids:
-	java -classpath bin:bin/gui.jar TestGUIBoids $(ARG1)
-exeTestEvents:
-	java -classpath bin:bin/gui.jar TestEventManager
-exeTestGUIBoids2:
-	java -classpath bin:bin/gui.jar TestGUIBoids2 $(ARG1) $(ARG2) $(ARG3)
+execJeuxGUI
+	java -classpath bin:bin/gui.jar JeuxGUI
 
 clean:
 	rm -rf bin/*.class
