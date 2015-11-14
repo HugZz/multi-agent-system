@@ -13,10 +13,10 @@ import java.util.Scanner;
  */
 public class JeuxGUI {
     public static void main (String [] args ){
-        int nbLignes = 150;
+        int nbLignes = 100;
         int nbColonnes = 250;
-        int largeur = 1000;
-        int hauteur = 750;
+        int largeur = 800;
+        int hauteur = 500;
 		int tailleCellule = 5;
 		GUISimulator window = null;
 		EventManager eventManager = new EventManager(); 
@@ -167,7 +167,7 @@ public class JeuxGUI {
 				}
 				window = new GUISimulator(largeur,hauteur, Color.BLUE);
 				for (int i=0; i<nbGroupesBalles ;i++ ) {
-					BBEvent boidsEvents = new BBEvent(groupesBalles[i], 1, eventManager, delaiB[i]);
+					BBEvent ballsEvents = new BBEvent(groupesBalles[i], 1, eventManager, delaiB[i]);
 					bb[i] = new BBSimulator(window,
 											groupesBalles[i],
 											ballsEvents,

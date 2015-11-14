@@ -68,6 +68,10 @@ public class Boids extends Balls
 		int n = this.getNbBalls();
         Point[] tmpB = new Point[n];
         Vect2D[] tmpV = new Vect2D[n];
+		for (int i=0; i<n ;i++ ) {
+			tmpB[i] = new Point();
+			tmpV[i] = new Vect2D();
+		}
         for( int i=0; i<n; i++){
             vc = cohesion(this.getBalls()[i],this.getVitessesB()[i]);
             va = alignement(this.getBalls()[i],this.getVitessesB()[i]);
