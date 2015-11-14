@@ -7,9 +7,9 @@ public abstract class Simulator implements Simulable {
     private Event event;
 	private ColorTable colorTable;
 
-    public Simulator(GUISimulator simulator, Event event) {
+    public Simulator(GUISimulator simulator, Event event, EventManager manager) {
         this.simulator = simulator;
-        this.manager = new EventManager();
+        this.manager = manager;
         this.event = event;
         this.manager.addEvent(event);
 		this.setColorTable();

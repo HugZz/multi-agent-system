@@ -5,8 +5,8 @@ public class CellulesSimulator extends Simulator {
     private Cellules plateau;
     private int tailleCellule;
 
-    public CellulesSimulator(Cellules plateau, int tailleCellule, GUISimulator simulator, Event event) {
-        super(simulator, event);
+    public CellulesSimulator(Cellules plateau, int tailleCellule, GUISimulator simulator, Event event, EventManager manager) {
+        super(simulator, event, manager);
         this.setPlateau(plateau);
         this.setTailleCellule(tailleCellule);
     }

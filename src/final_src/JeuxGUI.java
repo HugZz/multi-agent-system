@@ -18,7 +18,8 @@ public class JeuxGUI {
         int largeur = 1000;
         int hauteur = 750;
 		int tailleCellule = 5;
-
+		GUISimulator window = null;
+		EventManager eventManager = new EventManager(); 
 
 		String nomJeu = new String("");
 		Scanner sc = new Scanner(System.in);
@@ -31,14 +32,12 @@ public class JeuxGUI {
 		System.out.println("Pour lancer le Jeu de Boids entrer 'jboids'");
 		System.out.println("Pour lancer le Jeu de Balles entrer 'jballes'");
 		System.out.println("Pour quitter entrer 'exit'");
+		nomJeu = sc.nextLine();
 
 		for (int j=0; j<20 ;j++ ) {
 			System.out.println("\n");
 		}
-		nomJeu = sc.nextLine();
 
-		GUISimulator window = null;
-		EventManager eventManager = new EventManager(); 
 		switch (nomJeu){
 			case "jdv":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de la Vie de Conway");
@@ -54,7 +53,8 @@ public class JeuxGUI {
 				CellulesSimulator jdv = new CellulesSimulator(	c,
 																tailleCellule,
 																window,
-																ce ); 
+																ce,
+                                                                eventManager); 
 				window.setSimulable(jdv);
 				break;
 			case "jim":
@@ -71,7 +71,8 @@ public class JeuxGUI {
 				CellulesSimulator jim = new CellulesSimulator(	ci,
 																tailleCellule,
 																window,
-																cei ); 
+																cei,
+                                                                eventManager); 
 				window.setSimulable(jim);
 				break;
 
@@ -95,7 +96,8 @@ public class JeuxGUI {
 				CellulesSimulator jseg = new CellulesSimulator(	cS,
 																tailleCellule,
 																window,
-																ceS ); 
+																ceS,
+                                                                eventManager); 
 				window.setSimulable(jseg);
 				break;
 
@@ -129,7 +131,8 @@ public class JeuxGUI {
 					BBEvent boidsEvents = new BBEvent(groupesBoids[i], 1, eventManager, delai[i]);
 					b[i] = new BBSimulator(	window,
 											groupesBoids[i],
-											boidsEvents ); 
+											boidsEvents,
+                                            eventManager); 
 					//b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
 					window.setSimulable(b[i]);
 				}
@@ -162,11 +165,12 @@ public class JeuxGUI {
 						delaiB[i] = sc.nextInt();
 					}
 					groupesBalles[i] = new Balls(nbBalles);
-					BBEvent boidsEvents = new BBEvent(groupesBalles[i], 1, eventManager, delaiB[i]);
-					window = new GUISimulator(largeur,hauteur, Color.BLUE);
+					BBEvent ballsEvents = new BBEvent(groupesBalles[i], 1, eventManager, delaiB[i]);
+					window = new GUISimulator(largeur, hauteur, Color.BLUE);
 					bb[i] = new BBSimulator(window,
 											groupesBalles[i],
-											boidsEvents ); 
+											ballsEvents,
+                                            eventManager); 
 					//b.getBalls()[0].setParameters(4, 10, 4, 15, 100);
 					window.setSimulable(bb[i]);
 				}
