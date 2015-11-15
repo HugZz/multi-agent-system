@@ -35,7 +35,7 @@ public class CellulesSeg extends Cellules {
      * @param k Nouvelle ségrégation [1..8]
      */
 	private void setK (int k) {
-		if (k<1 || k>8) {
+		if (k<0 || k>8) {
 			throw new RuntimeException("Attention le parametre de segregation doit être entre [1..8] !!!");
 		}
 		this.k = k;
@@ -72,10 +72,10 @@ public class CellulesSeg extends Cellules {
      * @return nombre de voisin de couleur différente
      */
     public int nbVoisin(int i, int k){
-		if (i<1 || i>super.getNbL() ) {
+		if (i<0 || i>super.getNbL() ) {
 			throw new RuntimeException("Attention cette ligne existe pas !");
 		}
-		if (k<1 || k>super.getNbC()) {
+		if (k<0 || k>super.getNbC()) {
 			throw new RuntimeException("Attention cette colonne n'existe pas !");
 		}
 		else{

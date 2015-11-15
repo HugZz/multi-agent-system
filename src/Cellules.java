@@ -101,8 +101,8 @@ abstract public class Cellules {
 	 *      nombre d'état possible par cellule 
 	 */
 	public void setNbEtats(int ne){
-		if (ne<=1 || ne>10 ) {
-			throw new RuntimeException("Attention le nombre d'état peut être uniquement dans [2..10] !!!");
+		if (ne<0 || ne>10 ) {
+			throw new RuntimeException("Attention le nombre d'état peut être uniquement dans [0..10] !!!");
 		}
 		else{
 			this.nbEtats = ne;
@@ -124,14 +124,14 @@ abstract public class Cellules {
 	 *      Nouvelle état de la cellule (i,k) e>1 et e<ne
 	 */
 	public void setCellule (int i, int k, int e) {
-		if (i<1 || i>this.getNbL() ) {
+		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<1 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbL() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
-		else if (e<2 || e>this.getNbEtats() ) {
-			throw new RuntimeException("Attention l'état doit être uniquement dans [2..nbEtats] !!!");
+		else if (e<0 || e>this.getNbEtats() ) {
+			throw new RuntimeException("Attention l'état doit être uniquement dans [0..nbEtats] !!!");
 		}
 		else{
 			this.getGrille()[i][k] = e;
@@ -145,10 +145,10 @@ abstract public class Cellules {
 	 *      Numéro de la colonne dont on désire connaitre l'état [1..nbC]
 	 */
 	public int getCellule(int i,int k) {
-		if (i<1 || i>this.getNbL() ) {
+		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<1 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbL() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
 		else{
@@ -165,13 +165,13 @@ abstract public class Cellules {
 	 *      Nouvelle état de la cellule (i,k)
 	 */
 	public void setTmpCellule (int i, int k, int e) {
-		if (i<1 || i>this.getNbL() ) {
+		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<1 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbL() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
-		else if (e<2 || e>this.getNbEtats() ) {
+		else if (e<0 || e>this.getNbEtats() ) {
 			throw new RuntimeException("Attention l'état doit être uniquement dans [2..nbEtats] !!!");
 		}
 		else{
@@ -186,10 +186,10 @@ abstract public class Cellules {
 	 *      Numero de la colonne dont on desire connaitre l'état
 	 */
 	public int getTmpCellule(int i,int k) {
-		if (i<1 || i>this.getNbL() ) {
+		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<1 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbL() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
 		else{

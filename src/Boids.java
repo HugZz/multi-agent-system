@@ -64,7 +64,7 @@ public class Boids extends Balls
 	 * @param i: numéro de la boid dont on désire connaitre le x
 	 */
 	public int getVx(int i) {
-		if (i<=0 || i>super.getNbBalls()) {
+		if (i<0 || i>super.getNbBalls()) {
 			throw new RuntimeException("Attention ce boids n'existe pas");
 		}
 		return (int)(this.getVitessesB()[i].getX()) ; 
@@ -74,7 +74,7 @@ public class Boids extends Balls
 	 * @param i: numéro du boid dont on désire connaitre le y
 	 */
 	public int getVy(int i) {
-		if (i<=0 || i>super.getNbBalls()) {
+		if (i<0 || i>super.getNbBalls()) {
 			throw new RuntimeException("Attention ce boids n'existe pas");
 		}
 		return (int)(this.getVitessesB()[i].getY());

@@ -62,10 +62,10 @@ public class CellulesIm extends Cellules {
 	 * @return nombre de voisin dans l'état '(e+1)%nbEtat'
 	 */
 	public int nbVoisin(int i, int k){
-		if (i<1 || i>super.getNbL() ) {
+		if (i<0 || i>super.getNbL() ) {
 			throw new RuntimeException("Attention cette ligne n'existe pas ! ");
 		}
-		else if (k<1 || k>super.getNbC() ) {
+		else if (k<0 || k>super.getNbC() ) {
 			throw new RuntimeException("Attention cette colonne n'existe pas !");
 		}
 		int cpt = 0;

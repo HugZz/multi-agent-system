@@ -39,10 +39,10 @@
      *      colonne de la cellule
      */
     public int nbVoisin(int i, int k){
-		if (i<1 || i>this.getNbL() ) {
+		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne n'existe pas !");
 		}
-		else if (k<1 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbL() ) {
 			throw new RuntimeException("Attention la colonne n'existe pas !");
 		}
 		else{

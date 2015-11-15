@@ -78,7 +78,7 @@ public class Balls {
 	 * @param i numéro de la balle dont on désire connaitre le x
 	 */
 	public int getPx(int i) {
-		if (i<1 || i>getNbBalls()) {
+		if (i<0 || i>getNbBalls()) {
 			throw new RuntimeException("Attention cette balles n'existe pas !");
 		}
 		return (this.getBalls()[i].getLocation()).x; 
@@ -88,7 +88,7 @@ public class Balls {
 	 * @param i: numero de la balle dont on desire connaitre le y
 	 */
 	public int getPy(int i) {
-		if (i<1 || i>getNbBalls()) {
+		if (i<0 || i>getNbBalls()) {
 			throw new RuntimeException("Attention cette balles n'existe pas !");
 		}
 		return (this.getBalls()[i].getLocation()).y;

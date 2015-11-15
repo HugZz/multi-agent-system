@@ -9,7 +9,9 @@ import java.util.Scanner;
  *	-jeu de la vie de Conway : entrer "jdv"
  *	-jeu de l'immigration : entrer "jim"
  *	-jeu de la ségrégation : entrer "jseg"
- *	-jeu de boids : entrer "jb"
+ *	-jeu de boids : entrer "jboids"
+ *	-jeu de balles : entrer "jballes"
+ *	-Quitter : entrer "exit"
  * @author Lucas Mahieu
  * @author Hugues de Valon
  */
