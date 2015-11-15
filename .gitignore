@@ -3,4 +3,12 @@
 .swo
 *.swp
 *.class
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.gz
+*~
+*.aux
+*.autosave
 
