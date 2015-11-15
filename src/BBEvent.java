@@ -18,10 +18,10 @@ public class BBEvent extends Event {
     private int groupe;
 
     /**
-     * Constructeur : Initialise les différents éléments de l'évènement.
+     * Constructeur : Initialise les différents éléments de l'événement.
      * @param balls Tableau des groupes de balles
-     * @param date Date d'execution de l'évènement
-     * @param manager Manager des évènements
+     * @param date Date d'execution de l'événement
+     * @param manager Manager des événements
      * @param delai Délai entre deux execution de chaque groupe
      * @param groupe Permet de distinguer quel groupe effectue executer
      */
@@ -33,21 +33,25 @@ public class BBEvent extends Event {
     }
 
     /**
-     * Cette méthode est executée à chaque évènement, groupe permet de
-     * distinguer si on execute la méthode pour la première fois (initialisation des évènements
+     * Cette méthode est executée à chaque événement, groupe permet de
+     * distinguer si on execute la méthode pour la première fois (initialisation des événements
      * pour tous les groupes : groupe = -1) ou si c'est uniquement 
-     * pour rajouter un évènement à un groupe particulier.
+     * pour rajouter un événement à un groupe particulier.
      */
     public void execute() {
+        // L'utilisation de groupe permet d'éviter des ajours récursifs d'événemnts.
         if (this.groupe == -1)
         {
+            // Cette partie est executée lors du premier appel, lorsque groupe vaut -1.
             for(int i = 0; i < this.balls.length; i++) {
                 this.balls[i].actualiser();
+                // L'événement crée, crée a son tour deux événement.
                 super.getManager().addEvent(new BBEvent(this.balls, super.getDate() + this.delai[i], this.getManager(), this.delai, i));
             }
         }
         else
         {
+            // Cas normal, l'événement ajoute des événements que pour son groupe.
             this.balls[this.groupe].actualiser();
             super.getManager().addEvent(new BBEvent(this.balls, super.getDate() + this.delai[this.groupe], this.getManager(), this.delai, this.groupe));
         }

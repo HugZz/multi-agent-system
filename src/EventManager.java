@@ -33,6 +33,7 @@ public class EventManager
      */
     public void addEvent(Event toAdd)
     {
+        // L'événement est ajouté à la queue suivant sa date d'execution.
         this.eventsParDate.add(toAdd);
     }
 
@@ -42,14 +43,20 @@ public class EventManager
     public void next()
     {
         Event toExecute;
+        // On incrémente le temps global.
         this.currentDate++;
-        //System.out.println("next ... date = " + this.currentDate);
 
+        // On vérifie sur le premier élément de la liste (celui qui a la date d'execution
+        // la plus petite) que sa date est inférieure à la date globale.
+        // Dans ce cas, on l'execute.
         while(eventsParDate.peek().getDate() <= this.currentDate)
         {
+            // poll permet de supprimer l'événement.
             toExecute = eventsParDate.poll();
             toExecute.execute();
 
+            // Permet de ne pas refaire la condition de boucle si on vient
+            // de supprimer le dernier événement.
             if (this.isFinished())
                 return;
         }
@@ -62,6 +69,7 @@ public class EventManager
      */
     public boolean isFinished()
     {
+        // On utilise la méthode déja présente dans la collection.
         return eventsParDate.isEmpty();
     }
 

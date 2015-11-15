@@ -12,7 +12,7 @@ public abstract class Simulator implements Simulable {
      */
     private GUISimulator simulator;
     /**
-     * Manager des évènements.
+     * Manager des événements.
      */
     private EventManager manager;
     /**
@@ -25,15 +25,16 @@ public abstract class Simulator implements Simulable {
 	private ColorTable colorTable;
 
     /**
-     * Constructeur : Initialise les attributs et ajoute le premier évènement.
+     * Constructeur : Initialise les attributs et ajoute le premier événement.
      * @param simulator GUI du sytème.
-     * @param event Premier évènement du système.
-     * @param manager Manager d'évènements.
+     * @param event Premier événement du système.
+     * @param manager Manager d'événements.
      */
     public Simulator(GUISimulator simulator, Event event, EventManager manager) {
         this.simulator = simulator;
         this.manager = manager;
         this.event = event;
+        // On ajoute l'événement originel, celui présent à la création du monde.
         this.manager.addEvent(event);
 		this.setColorTable();
     }
@@ -47,8 +48,8 @@ public abstract class Simulator implements Simulable {
     }
 
     /**
-     * Accesseur du manager d'évènements.
-     * @return Manager des évènements.
+     * Accesseur du manager d'événements.
+     * @return Manager des événements.
      */
     public EventManager getManager() {
         return this.manager;
@@ -78,6 +79,7 @@ public abstract class Simulator implements Simulable {
     public void restart(){
         this.manager.restart();
         this.reInit();
+        // Premier événement : celui qui créera tous les autres.
         this.manager.addEvent(this.event);
         this.simulator.reset();
         this.affiche();

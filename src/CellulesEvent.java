@@ -26,6 +26,7 @@ public class CellulesEvent extends Event {
      */
     public void execute() {
         this.plateau.actualiser();
+        // L'événement se rajoute lui même pour crée l'INFINITE.
         super.getManager().addEvent(new CellulesEvent(this.plateau, super.getDate() + 1, this.getManager()));
     }
 }

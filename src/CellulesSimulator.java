@@ -17,7 +17,7 @@ public class CellulesSimulator extends Simulator {
     private int tailleCellule;
 
     /**
-     * Constructeur : initialise le plateau de cellules, le GUI, l'évènement principal et le manager d'évènements.
+     * Constructeur : initialise le plateau de cellules, le GUI, l'événement principal et le manager d'événements.
      * @param plateau
      * @param tailleCellule
      * @param simulator

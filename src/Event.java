@@ -1,24 +1,24 @@
 /**
- * Représente de façon abstraire tous les évènements.
+ * Représente de façon abstraire tous les événements.
  * @author Lucas Mahieu
  * @author Hugues de Valon
  */
 public abstract class Event
 {
     /**
-     * Date d'execution de l'évènement.
+     * Date d'execution de l'événement.
      */
     private long date;
     /**
-     * Manager de tous les évènements afin que les évènements eux mêmes puissent
+     * Manager de tous les événements afin que les événements eux mêmes puissent
      * en rajouter.
      */
     private EventManager manager;
 
     /**
-     * Constructeur : initialise date d'execution et manager des évènements.
-     * @param date Date d'execution de l'évènement
-     * @param manager Manager de tous les évènements
+     * Constructeur : initialise date d'execution et manager des événements.
+     * @param date Date d'execution de l'événement
+     * @param manager Manager de tous les événements
      */
     public Event(long date, EventManager manager)
     {
@@ -27,7 +27,7 @@ public abstract class Event
     }
 
     /**
-     * @return Renvoie la date d'execution de l'évènement
+     * @return Renvoie la date d'execution de l'événement
      */
     public long getDate()
     {
@@ -35,16 +35,15 @@ public abstract class Event
     }
 
     /**
-     * @return Renvoie le manager d'évènements.
+     * @return Renvoie le manager d'événements.
      */
     public EventManager getManager() {
         return this.manager;
     }
 
-    // Les fils de Event définissent réellement cette méthode.
     /**
      * Les fils définissent réellement l'action à executer à chaque
-     * évènement.
+     * événement.
      */
     public abstract void execute();
 }

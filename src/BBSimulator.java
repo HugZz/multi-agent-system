@@ -37,7 +37,7 @@ public class BBSimulator extends Simulator {
     }
 
     /**
-     * Constructeur : initialise le GUI, le simulateur d'évènements, le premier évènement
+     * Constructeur : initialise le GUI, le simulateur d'événements, le premier événement
      * , les balles et la table des couleurs.
      * @param simulator
      * @param balles

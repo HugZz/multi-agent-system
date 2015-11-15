@@ -2,10 +2,28 @@ import java.awt.Point;
 import java.util.Random;
 import java.util.LinkedList;
 
+/**
+ * Cette classe gère la partie calcul du jeu de Schelling.
+ * @author Lucas Mahieu
+ * @author Hugues de Valon
+ */
 public class CellulesSeg extends Cellules {
+    /**
+     * Paramètre de ségrégation.
+     */
 	private int k;
+    /**
+     * Liste chainée des logements vacants.
+     */
     private LinkedList<Point> vacants;
 
+    /**
+     * Constructeur : Initialise les paramètres du jeu et la liste chainée.
+     * @param n Nombre de lignes
+     * @param m Nombre de colonnes
+     * @param ne Nombre d'état par cellules
+     * @param k Facteur de ségrégation
+     */
 	public CellulesSeg(int n, int m, int ne, int k) {
 		super(n,m,ne);
 		this.setK(k);
@@ -13,9 +31,17 @@ public class CellulesSeg extends Cellules {
 		this.reInit();
 	}
 	
+    /**
+     * Modifieur du paramètre de ségrégation.
+     * @param k Nouvelle ségrégation
+     */
 	private void setK (int k) {
 		this.k = k;
 	}
+    /**
+     * Accesseur du paramètre de ségrégation.
+     * @return Facteur de ségrégation
+     */
 	private int  getK () {
 		return this.k;
 	}
@@ -51,10 +77,12 @@ public class CellulesSeg extends Cellules {
         int g = k-1;
         int etat = 0;
         etat = this.getCellule(i,k);
+        // Le plateau est circulaire.
         if( i==0 ) { b = (this.getNbL()-1);}
         if( i==this.getNbL()-1 ) { h = 0;}
         if( k==0) { g = (this.getNbC()-1);}
         if( k==this.getNbC()-1 ) { d = 0;}
+        // L'état vacant n'est pas compté comme un nouvel état.
         if ( this.getCellule(b,g) != etat && this.getCellule(b,g) != -1) cpt++;
         if ( this.getCellule(i,g) != etat && this.getCellule(i,g) != -1) cpt++;
         if ( this.getCellule(h,g) != etat && this.getCellule(h,g) != -1) cpt++;
@@ -67,8 +95,8 @@ public class CellulesSeg extends Cellules {
     }
 
 	/**
-	 * Méthode qui permet de modifier la valeur de chaque cellule en fonction de la règle de jeu donnée.
-	 * C'est ce qui est fait entre chaque itération
+	 * Méthode qui permet de modifier la valeur de chaque cellule en fonction de la règle de jeu donnée,
+	 * c'est ce qui est fait entre chaque itération
 	 */
 	public void actualiser (){
 		int voisinDiff = 0;
@@ -82,20 +110,14 @@ public class CellulesSeg extends Cellules {
 				// différents, elle déménage.
 				if(voisinDiff > this.getK() && this.getCellule(i, k) != -1) {
 					c = r.nextInt(this.getVac().size());
-					//System.out.printf("Ségrégation !\n");
-					//System.out.printf("à déménager : i = %d, k = %d\n", i, k);
 					// L'habitation devient vacante sur la grille.
 					this.setTmpCellule(i, k, -1);
 					// On prend le premier élément de la liste des habitations vacantes,
 					// et on déplace l'habitation.
-					//System.out.println("Etat des vacants avant le pop : \n" + this.getVac());
 					Point nlleMaison = new Point(this.getVac().remove(c));
-					//System.out.printf("à emménager : i = %d, k = %d\n", (int)nlleMaison.getX(), (int)nlleMaison.getY());
 					this.setTmpCellule((int)nlleMaison.getX(), (int)nlleMaison.getY(), this.getCellule(i,k));
 					// On ajoute l'habitation à la liste chainée.
-					//System.out.println("Etat des vacants après le pop : \n" + this.getVac());
 					this.getVac().add(new Point(i, k));
-					//System.out.println("Etat des vacants après le add : \n" + this.getVac());
 				}
 			}
 		}
@@ -117,8 +139,8 @@ public class CellulesSeg extends Cellules {
 		Random r = new Random();
 		for(int i=0; i<this.getNbL(); i++){
 			for(int k=0;k<this.getNbC(); k++){
-				// On met des cases vacantes par défaut.
-				// On met 1/(10*k) d'habitations vacantes (empirique).
+				// On met des cases vacantes par défaut, le nombre de ces cases est
+                // un nombre dépendant de n, m et k.
 				if (nbVac < (this.getNbL() * this.getNbC()) / (5 * (this.getK() + 1))) {
 					this.setCellule(i, k, -1);
 					this.setTmpCellule(i, k, -1);

@@ -10,6 +10,8 @@ import java.util.Scanner;
  *	-jeu de l'immigration : entrer "jim"
  *	-jeu de la ségrégation : entrer "jseg"
  *	-jeu de boids : entrer "jb"
+ * @author Lucas Mahieu
+ * @author Hugues de Valon
  */
 public class JeuxGUI {
     public static void main (String [] args ){
@@ -23,16 +25,13 @@ public class JeuxGUI {
 
 		String nomJeu = new String("");
 		Scanner sc = new Scanner(System.in);
-		for (int j=0; j<20 ;j++ ) {
-			System.out.println("\n");
-		}
 		System.out.println("Bienvenue à vous, nous vous proposons plusieurs jeux :\n");
-		System.out.println("Pour lancer le Jeu de la Vie de Conway entrer : 'jdv'");
-		System.out.println("Pour lancer le Jeu de l'Immigration entrer    : 'jim'");
-		System.out.println("Pour lancer le Jeu de la Ségrégation entrer   : 'jseg'");
-		System.out.println("Pour lancer le Jeu de Boids entrer            : 'jboids'");
-		System.out.println("Pour lancer le Jeu de Balles entrer           : 'jballes'");
-		System.out.println("Pour quitter entrer                           : 'exit'");
+		System.out.println("Pour lancer le Jeu de la Vie de Conway, entrez : 'jdv'");
+		System.out.println("Pour lancer le Jeu de l'Immigration, entrez    : 'jim'");
+		System.out.println("Pour lancer le Jeu de la Ségrégation, entrez   : 'jseg'");
+		System.out.println("Pour lancer le Jeu de Boids, entrez            : 'jboids'");
+		System.out.println("Pour lancer le Jeu de Balles, entrez           : 'jballes'");
+		System.out.println("Pour quitter, entrez                           : 'exit'");
 
 		nomJeu = sc.nextLine();
 		switch (nomJeu){
@@ -44,7 +43,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [0..100]\n"); 
 					p = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.WHITE);
+				window = new GUISimulator(largeur,hauteur, Color.BLACK);
 				CellulesVie c = new CellulesVie(nbLignes, nbColonnes , p);
 				CellulesEvent ce = new CellulesEvent(c, 1, eventManager );
 				CellulesSimulator jdv = new CellulesSimulator(	c,
@@ -54,6 +53,7 @@ public class JeuxGUI {
                                                                 eventManager); 
 				window.setSimulable(jdv);
 				break;
+
 			case "jim":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de l'Immigration");
 				System.out.println("Entrer le nombre d'états possibles par cellule (int) [2..10]");
@@ -62,7 +62,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [2..10]"); 
 					nei = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.WHITE);
+				window = new GUISimulator(largeur,hauteur, Color.BLACK);
 				CellulesIm ci = new CellulesIm(nbLignes, nbColonnes , nei);
 				CellulesEvent cei = new CellulesEvent(ci, 1, eventManager );
 				CellulesSimulator jim = new CellulesSimulator(	ci,
@@ -87,7 +87,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [1..8]"); 
 					k = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.WHITE);
+				window = new GUISimulator(largeur,hauteur, Color.BLACK);
 				CellulesSeg cS = new CellulesSeg(nbLignes, nbColonnes , neS, k);
 				CellulesEvent ceS = new CellulesEvent(cS, 1, eventManager );
 				CellulesSimulator jseg = new CellulesSimulator(	cS,
@@ -124,7 +124,7 @@ public class JeuxGUI {
 						delai[i] = sc.nextInt();
 					}
 				}
-				window = new GUISimulator(largeur,hauteur, Color.WHITE);
+				window = new GUISimulator(largeur,hauteur, Color.BLACK);
                 BBEvent boidsEvents = new BBEvent(groupesBoids, 1, eventManager, delai, -1);
                 BBSimulator b = new BBSimulator(window,
 												groupesBoids,
@@ -161,7 +161,7 @@ public class JeuxGUI {
 						delaiB[i] = sc.nextInt();
 					}
 				}
-				window = new GUISimulator(largeur,hauteur, Color.WHITE);
+				window = new GUISimulator(largeur,hauteur, Color.BLACK);
                 BBEvent ballesEvents = new BBEvent(groupesBalles, 1, eventManager, delaiB, -1);
                 BBSimulator bb = new BBSimulator(window,
 												groupesBalles,
@@ -174,6 +174,7 @@ public class JeuxGUI {
 			case "exit":
 				System.out.println("\nVous avez demander de quitter, Bye Bye" ); 
 				return;
+
 			default :
 				System.out.println("\nVous n'avez pas entré le nom d'un jeu valide... Relancer le jeu"); 
 				return;
