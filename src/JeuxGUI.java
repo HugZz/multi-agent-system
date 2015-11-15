@@ -43,7 +43,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [0..100]\n"); 
 					p = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLACK);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
 				CellulesVie c = new CellulesVie(nbLignes, nbColonnes , p);
 				CellulesEvent ce = new CellulesEvent(c, 1, eventManager );
 				CellulesSimulator jdv = new CellulesSimulator(	c,
@@ -62,7 +62,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [2..10]"); 
 					nei = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLACK);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
 				CellulesIm ci = new CellulesIm(nbLignes, nbColonnes , nei);
 				CellulesEvent cei = new CellulesEvent(ci, 1, eventManager );
 				CellulesSimulator jim = new CellulesSimulator(	ci,
@@ -87,7 +87,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [1..8]"); 
 					k = sc.nextInt();
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLACK);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
 				CellulesSeg cS = new CellulesSeg(nbLignes, nbColonnes , neS, k);
 				CellulesEvent ceS = new CellulesEvent(cS, 1, eventManager );
 				CellulesSimulator jseg = new CellulesSimulator(	cS,
@@ -124,7 +124,7 @@ public class JeuxGUI {
 						delai[i] = sc.nextInt();
 					}
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLACK);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
                 BBEvent boidsEvents = new BBEvent(groupesBoids, 1, eventManager, delai, -1);
                 BBSimulator b = new BBSimulator(window,
 												groupesBoids,
@@ -161,7 +161,7 @@ public class JeuxGUI {
 						delaiB[i] = sc.nextInt();
 					}
 				}
-				window = new GUISimulator(largeur,hauteur, Color.BLACK);
+				window = new GUISimulator(largeur,hauteur, Color.WHITE);
                 BBEvent ballesEvents = new BBEvent(groupesBalles, 1, eventManager, delaiB, -1);
                 BBSimulator bb = new BBSimulator(window,
 												groupesBalles,
