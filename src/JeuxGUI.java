@@ -17,8 +17,8 @@ import java.util.Scanner;
  */
 public class JeuxGUI {
     public static void main (String [] args ){
-        int nbLignes = 50;
-        int nbColonnes = 50;
+        int nbLignes = 100;
+        int nbColonnes = 250;
         int largeur = 800;
         int hauteur = 500;
 		int tailleCellule = 5;

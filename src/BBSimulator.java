@@ -39,10 +39,10 @@ public class BBSimulator extends Simulator {
     /**
      * Constructeur : initialise le GUI, le simulateur d'événements, le premier événement
      * , les balles et la table des couleurs.
-     * @param simulator
-     * @param balles
-     * @param event
-     * @param manager
+     * @param simulator Simulateur
+     * @param balles groupe de Balles à faire simuler
+     * @param event Évènement
+     * @param manager gestionnaire d'événements 
      */
     public BBSimulator(GUISimulator simulator, Balls[] balles, Event event, EventManager manager) {
         super(simulator, event, manager);

@@ -40,7 +40,7 @@ abstract public class Cellules {
 	 * @param n nbr de lignes à créer [1..500]
 	 */
 	public void setNbL(int n){
-		if (n<=0 || n>500) {
+		if (n<0 || n>500) {
 			throw new RuntimeException("Attention le nombre de ligne doit être entre [1..500] !!!");
 		}
 		this.nbL = n;
@@ -50,7 +50,7 @@ abstract public class Cellules {
 	 * @param m nbr de colonnes à créer [1..500]
 	 */
 	public void setNbC(int m){
-		if (m<=0 || m>500) {
+		if (m<0 || m>500) {
 			throw new RuntimeException("Attention le nombre de colonnes doit être entre [1..500]");
 		}
 		this.nbC = m;
@@ -127,7 +127,7 @@ abstract public class Cellules {
 		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<0 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbC() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
 		else if (e<0 || e>this.getNbEtats() ) {
@@ -148,7 +148,7 @@ abstract public class Cellules {
 		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<0 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbC() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
 		else{
@@ -168,7 +168,7 @@ abstract public class Cellules {
 		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<0 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbC() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
 		else if (e<0 || e>this.getNbEtats() ) {
@@ -189,7 +189,7 @@ abstract public class Cellules {
 		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne doit être entre [1..nbL] !!!");
 		}
-		else if (k<0 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbC() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
 		else{

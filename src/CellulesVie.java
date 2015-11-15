@@ -42,7 +42,7 @@
 		if (i<0 || i>this.getNbL() ) {
 			throw new RuntimeException("Attention la ligne n'existe pas !");
 		}
-		else if (k<0 || k>this.getNbL() ) {
+		else if (k<0 || k>this.getNbC() ) {
 			throw new RuntimeException("Attention la colonne n'existe pas !");
 		}
 		else{
