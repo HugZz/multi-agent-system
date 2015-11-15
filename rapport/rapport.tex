@@ -71,17 +71,17 @@ Les seules différences avec le jeux de la vie sont
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Un gestionnaire à évènements discrets\,:} 
       {
-      
+          \indent Afin de gérer les événements dans {\em EventManager}, on utilise comme collection Java une {\em PriorityQueue} afin de classer les événements selon leur date d'execution de façon croissante. La classe {\em ComparateurDate} implémente cette relation de comparaison. La classe abstraire {\em Event} et ses sous-classes permettent de définir concrètement la nature des évènements.
       } 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \subsubsection{Modification de votre simulateur\,: } 
       {
-       
+          \indent Grâce à la hierarchie des classes utilisés, il est facile d'utiliser les événements à la place de l'ancienne gestion. Il suffit alors de créer un sous-événement {\em BBEvent} pour les balles et les boids et {\em CellulesEvent} pour tous les types de jeu reposant sur les cellules.
       }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       \subsubsection{Simulation de plusieurs groupes de boids\,: } 
       {
-      
+          \indent Nous avons généralisé ce problème en proposant aussi de simuler plusieures groupes de balles, les boids étant des balles, cela ne posait pas de problème. Pour cela, il suffit simplement d'utiliser un tableau de balles partout où on les utilise, c'est à dire dans {\em BBEvent} et dans {\em BBSimulator} afin d'avoir un simulateur qui contient ces groupes de balles/de boids. Les événements sont alors communs : à la création du groupe on choisit leur délai d'attente entre deux execution, et leur événements s'ajoutent à la queue globale des événements.
       }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
