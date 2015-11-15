@@ -81,7 +81,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [2..10]"); 
 					neS = sc.nextInt();
 				}
-				System.out.println("Entrer le facteur de segregation (int) [1..8]"); 
+				System.out.println("Entrez le facteur de segregation (int) [1..8]"); 
 				int k = sc.nextInt();
 				while ( k<1 || k>9) {
 					System.out.println("Veuillez entrer un (int) entre [1..8]"); 
@@ -100,7 +100,7 @@ public class JeuxGUI {
 
 			case "jboids":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de Boids");
-				System.out.println("Entrer le nombre de groupes de Boids (int) [1..10]"); 
+				System.out.println("Entrez le nombre de groupes de Boids (int) [1..10]"); 
 				int nbGroupe = sc.nextInt();
 				while ( nbGroupe<1 || nbGroupe>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
@@ -137,7 +137,7 @@ public class JeuxGUI {
 
 			case "jballes":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de Balles");
-				System.out.println("Entrer le nombre de groupes de Balles (int) [1..10]"); 
+				System.out.println("Entrez le nombre de groupes de Balles (int) [1..10]"); 
 				int nbGroupesBalles = sc.nextInt();
 				while ( nbGroupesBalles<1 || nbGroupesBalles>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
@@ -154,7 +154,7 @@ public class JeuxGUI {
 						nbBalles = sc.nextInt();
 					}
 					groupesBalles[i] = new Balls(nbBalles);
-					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
+					System.out.println("Entrer la réactivité des Balles (int) [1..20] pour le  groupe " + i); 
 					delaiB[i] = sc.nextInt();
 					while ( delaiB[i]<1 || delaiB[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
@@ -172,11 +172,11 @@ public class JeuxGUI {
 				break;
 
 			case "exit":
-				System.out.println("\nVous avez demander de quitter, Bye Bye" ); 
+				System.out.println("\nVous avez demander de quitter, bye bye !" ); 
 				return;
 
 			default :
-				System.out.println("\nVous n'avez pas entré le nom d'un jeu valide... Relancer le jeu"); 
+				System.out.println("\nVous n'avez pas entrer le nom d'un jeu valide, relancez le jeu."); 
 				return;
 		}
     }

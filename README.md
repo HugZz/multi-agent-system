@@ -11,3 +11,15 @@ Ensimag 2A POO - TP 2015/16
 
 - Makefile: quelques explications sur la compilation en ligne, notamment la notion de classpath et l'utilisation de ihm.jar
 
+Execution
+=========
+
+* **compilation** : > make jeuxGUI
+* **lancement** : > make exeJeuxGUI
+
+> make all
+Permet d'effectuer ces deux opérations à la suite.
+
+> make clean
+Efface les .class de bin/
+

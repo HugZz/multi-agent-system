@@ -61,6 +61,11 @@ public abstract class Simulator implements Simulable {
     abstract public void affiche();
 
     /**
+     * Méthode qui définit la méthode de réinitialisation du système.
+     */
+    abstract public void reInit();
+
+    /**
      * Cette classe s'éxecute lorsque l'utilisateur clique sur le bouton
      * "Suivant", elle actualise le système et l'affiche.
      */
