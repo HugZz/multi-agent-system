@@ -1,25 +1,54 @@
 import gui.*;
 import java.awt.Color;
 
+/**
+ * Cette classe permet de gérer la partie "affichage" des trois jeux.
+ * @author Lucas Mahieu
+ * @author Hugues de Valon
+ */
 public class CellulesSimulator extends Simulator {
+    /**
+     * Plateau de cellules.
+     */
     private Cellules plateau;
+    /**
+     * Taille d'une cellule.
+     */
     private int tailleCellule;
 
+    /**
+     * Constructeur : initialise le plateau de cellules, le GUI, l'événement principal et le manager d'événements.
+     * @param plateau
+     * @param tailleCellule
+     * @param simulator
+     * @param event
+     * @param manager
+     */
     public CellulesSimulator(Cellules plateau, int tailleCellule, GUISimulator simulator, Event event, EventManager manager) {
         super(simulator, event, manager);
         this.setPlateau(plateau);
         this.setTailleCellule(tailleCellule);
     }
 
+    /**
+     * Modifieur sur le plateau
+     * @param plateau Nouveau plateau
+     */
     public void setPlateau(Cellules plateau) {
         this.plateau = plateau;
     }
 
+    /**
+     * Modifieur sur la taille des cellules.
+     * @param t Nouvelle taile
+     */
     private void setTailleCellule(int t){
         this.tailleCellule = t;
     }
-  
 
+    /**
+     * Cette méthode ré-initialise le plateau de cellules.
+     */
 	public void reInit() {
         this.plateau.reInit();
     }

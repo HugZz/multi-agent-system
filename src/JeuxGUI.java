@@ -10,6 +10,8 @@ import java.util.Scanner;
  *	-jeu de l'immigration : entrer "jim"
  *	-jeu de la ségrégation : entrer "jseg"
  *	-jeu de boids : entrer "jb"
+ * @author Lucas Mahieu
+ * @author Hugues de Valon
  */
 public class JeuxGUI {
     public static void main (String [] args ){
@@ -23,16 +25,13 @@ public class JeuxGUI {
 
 		String nomJeu = new String("");
 		Scanner sc = new Scanner(System.in);
-		for (int j=0; j<20 ;j++ ) {
-			System.out.println("\n");
-		}
 		System.out.println("Bienvenue à vous, nous vous proposons plusieurs jeux :\n");
-		System.out.println("Pour lancer le Jeu de la Vie de Conway entrer : 'jdv'");
-		System.out.println("Pour lancer le Jeu de l'Immigration entrer    : 'jim'");
-		System.out.println("Pour lancer le Jeu de la Ségrégation entrer   : 'jseg'");
-		System.out.println("Pour lancer le Jeu de Boids entrer            : 'jboids'");
-		System.out.println("Pour lancer le Jeu de Balles entrer           : 'jballes'");
-		System.out.println("Pour quitter entrer                           : 'exit'");
+		System.out.println("Pour lancer le Jeu de la Vie de Conway, entrez : 'jdv'");
+		System.out.println("Pour lancer le Jeu de l'Immigration, entrez    : 'jim'");
+		System.out.println("Pour lancer le Jeu de la Ségrégation, entrez   : 'jseg'");
+		System.out.println("Pour lancer le Jeu de Boids, entrez            : 'jboids'");
+		System.out.println("Pour lancer le Jeu de Balles, entrez           : 'jballes'");
+		System.out.println("Pour quitter, entrez                           : 'exit'");
 
 		nomJeu = sc.nextLine();
 		switch (nomJeu){
@@ -54,6 +53,7 @@ public class JeuxGUI {
                                                                 eventManager); 
 				window.setSimulable(jdv);
 				break;
+
 			case "jim":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de l'Immigration");
 				System.out.println("Entrer le nombre d'états possibles par cellule (int) [2..10]");
@@ -81,7 +81,7 @@ public class JeuxGUI {
 					System.out.println("Veuillez entrer un (int) entre [2..10]"); 
 					neS = sc.nextInt();
 				}
-				System.out.println("Entrer le facteur de segregation (int) [1..8]"); 
+				System.out.println("Entrez le facteur de segregation (int) [1..8]"); 
 				int k = sc.nextInt();
 				while ( k<1 || k>9) {
 					System.out.println("Veuillez entrer un (int) entre [1..8]"); 
@@ -100,7 +100,7 @@ public class JeuxGUI {
 
 			case "jboids":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de Boids");
-				System.out.println("Entrer le nombre de groupes de Boids (int) [1..10]"); 
+				System.out.println("Entrez le nombre de groupes de Boids (int) [1..10]"); 
 				int nbGroupe = sc.nextInt();
 				while ( nbGroupe<1 || nbGroupe>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
@@ -137,7 +137,7 @@ public class JeuxGUI {
 
 			case "jballes":
 				System.out.println("\nVous avez choisi de lancer le jeu: Jeu de Balles");
-				System.out.println("Entrer le nombre de groupes de Balles (int) [1..10]"); 
+				System.out.println("Entrez le nombre de groupes de Balles (int) [1..10]"); 
 				int nbGroupesBalles = sc.nextInt();
 				while ( nbGroupesBalles<1 || nbGroupesBalles>10) {
 					System.out.println("Veuillez entrer un (int) entre [1..10]"); 
@@ -154,7 +154,7 @@ public class JeuxGUI {
 						nbBalles = sc.nextInt();
 					}
 					groupesBalles[i] = new Balls(nbBalles);
-					System.out.println("Entrer la réactivité des Boids (int) [1..20] pour le  groupe " + i); 
+					System.out.println("Entrer la réactivité des Balles (int) [1..20] pour le  groupe " + i); 
 					delaiB[i] = sc.nextInt();
 					while ( delaiB[i]<1 || delaiB[i]>20) {
 						System.out.println("Veuillez entrer un (int) entre [1..20]"); 
@@ -172,10 +172,11 @@ public class JeuxGUI {
 				break;
 
 			case "exit":
-				System.out.println("\nVous avez demander de quitter, Bye Bye" ); 
+				System.out.println("\nVous avez demander de quitter, bye bye !" ); 
 				return;
+
 			default :
-				System.out.println("\nVous n'avez pas entré le nom d'un jeu valide... Relancer le jeu"); 
+				System.out.println("\nVous n'avez pas entrer le nom d'un jeu valide, relancez le jeu."); 
 				return;
 		}
     }
