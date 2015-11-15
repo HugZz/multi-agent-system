@@ -56,7 +56,10 @@ Les seules différences avec le jeux de la vie sont
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Le modèle de Schelling\,:}
  	{ 
-	A TOI DE COMPLETER CETTE PARTIE LA POUR EXPLIQUER CE QUE TU AS UTILISEE ET PQ 
+        \indent Pour cette partie, en plus d'avoir implémenté la nouvelle règle d'actualisation, nous avons utilisé une collection Java pour lister les habitations vacantes : {\em LinkedList}.
+        De plus, nous avons considéré l'état -1 comme étant l'état d'une habitation vacante pour faciliter les calculs et faisant bien attention que ce nouvel état ne soit pas considéré comme une couleur lors du calcul des voisins.
+        Lorsqu'une famille déménage, elle emménage dans une habitation vacante prise au hasard dans la liste.
+        Lors de l'initialisation, toutes les habitations vacantes prévues sont créées dans l'ordre dans les premières cellules. Ce nombre de cellules vacantes dépend du facteur de ségrégation {\em k}, du nombre de lignes et du nombre de colonnes, selon la formule : $ \frac{lignes*colonnes}{5*(k+1)} $, trouvée empiriquement.
 	} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
