@@ -3,7 +3,6 @@
 .swo
 *.swp
 *.class
-resources/
 *.aux
 *.fdb_latexmk
 *.fls
