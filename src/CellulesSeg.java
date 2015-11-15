@@ -1,11 +1,10 @@
 import java.awt.Point;
+
 import java.util.Random;
 import java.util.LinkedList;
 
 /**
- * Cette classe gère la partie calcul du jeu de Schelling.
- * @author Lucas Mahieu
- * @author Hugues de Valon
+ * Classe fille de Cellules qui va implementer les deux méthodes actualiser() et reInit().
  */
 public class CellulesSeg extends Cellules {
     /**
@@ -33,9 +32,12 @@ public class CellulesSeg extends Cellules {
 	
     /**
      * Modifieur du paramètre de ségrégation.
-     * @param k Nouvelle ségrégation
+     * @param k Nouvelle ségrégation [1..8]
      */
 	private void setK (int k) {
+		if (k<1 || k>8) {
+			throw new RuntimeException("Attention le parametre de segregation doit être entre [1..8] !!!");
+		}
 		this.k = k;
 	}
     /**
@@ -70,33 +72,42 @@ public class CellulesSeg extends Cellules {
      * @return nombre de voisin de couleur différente
      */
     public int nbVoisin(int i, int k){
-        int cpt = 0;
-        int b = i-1;
-        int h = i+1;
-        int d = k+1;
-        int g = k-1;
-        int etat = 0;
-        etat = this.getCellule(i,k);
-        // Le plateau est circulaire.
-        if( i==0 ) { b = (this.getNbL()-1);}
-        if( i==this.getNbL()-1 ) { h = 0;}
-        if( k==0) { g = (this.getNbC()-1);}
-        if( k==this.getNbC()-1 ) { d = 0;}
-        // L'état vacant n'est pas compté comme un nouvel état.
-        if ( this.getCellule(b,g) != etat && this.getCellule(b,g) != -1) cpt++;
-        if ( this.getCellule(i,g) != etat && this.getCellule(i,g) != -1) cpt++;
-        if ( this.getCellule(h,g) != etat && this.getCellule(h,g) != -1) cpt++;
-        if ( this.getCellule(b,k) != etat && this.getCellule(b,k) != -1) cpt++;
-        if ( this.getCellule(h,k) != etat && this.getCellule(h,k) != -1) cpt++;
-        if ( this.getCellule(b,d) != etat && this.getCellule(b,d) != -1) cpt++;
-        if ( this.getCellule(i,d) != etat && this.getCellule(i,d) != -1) cpt++;
-        if ( this.getCellule(h,d) != etat && this.getCellule(h,d) != -1) cpt++;
-        return cpt;
+		if (i<1 || i>super.getNbL() ) {
+			throw new RuntimeException("Attention cette ligne existe pas !");
+		}
+		if (k<1 || k>super.getNbC()) {
+			throw new RuntimeException("Attention cette colonne n'existe pas !");
+		}
+		else{
+			int cpt = 0;
+			int b = i-1;
+			int h = i+1;
+			int d = k+1;
+			int g = k-1;
+			int etat = 0;
+			etat = this.getCellule(i,k);
+			// Le plateau est circulaire.
+			if( i==0 ) { b = (this.getNbL()-1);}
+			if( i==this.getNbL()-1 ) { h = 0;}
+			if( k==0) { g = (this.getNbC()-1);}
+			if( k==this.getNbC()-1 ) { d = 0;}
+			// L'état vacant n'est pas compté comme un nouvel état.
+			if ( this.getCellule(b,g) != etat && this.getCellule(b,g) != -1) cpt++;
+			if ( this.getCellule(i,g) != etat && this.getCellule(i,g) != -1) cpt++;
+			if ( this.getCellule(h,g) != etat && this.getCellule(h,g) != -1) cpt++;
+			if ( this.getCellule(b,k) != etat && this.getCellule(b,k) != -1) cpt++;
+			if ( this.getCellule(h,k) != etat && this.getCellule(h,k) != -1) cpt++;
+			if ( this.getCellule(b,d) != etat && this.getCellule(b,d) != -1) cpt++;
+			if ( this.getCellule(i,d) != etat && this.getCellule(i,d) != -1) cpt++;
+			if ( this.getCellule(h,d) != etat && this.getCellule(h,d) != -1) cpt++;
+			return cpt;
+		}
     }
 
 	/**
-	 * Méthode qui permet de modifier la valeur de chaque cellule en fonction de la règle de jeu donnée,
+	 * Méthode qui permet de modifier la valeur de chaque cellule en fonction de la règle du jeu de ségrégation
 	 * c'est ce qui est fait entre chaque itération
+	 * Si l'habitation de couleur c ( != -1 ) a plus de K voisins elle démanage et l'habitation devient vacante
 	 */
 	public void actualiser (){
 		int voisinDiff = 0;
@@ -106,8 +117,6 @@ public class CellulesSeg extends Cellules {
 			for(int k=0;k<this.getNbC(); k++){
 				voisinDiff = this.nbVoisin(i,k);
 
-				// Si l'habitation de couleur considérée ( != -1 ) a plus de K voisins
-				// différents, elle déménage.
 				if(voisinDiff > this.getK() && this.getCellule(i, k) != -1) {
 					c = r.nextInt(this.getVac().size());
 					// L'habitation devient vacante sur la grille.
@@ -130,7 +139,7 @@ public class CellulesSeg extends Cellules {
 	}
 
 	/**
-	 * Affecte à chaque cellule un état parmi nbEtat de façon aléatoire et équiprobable pour chaque cellule
+	 * Affecte à chaque cellule un état parmi nbEtat de façon aléatoire et équiprobable
 	 */
 	public void reInit(){
 		int c = 0;
@@ -154,6 +163,5 @@ public class CellulesSeg extends Cellules {
 				}
 			}
 		}
-		//System.out.println("Etat des vacants après l'init : \n" + this.getVac());
 	}
 }

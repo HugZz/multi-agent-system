@@ -2,21 +2,27 @@ import java.awt.Point;
 import java.util.Random;
 import java.util.LinkedList;
 
+/**
+ * Classe fille de Cellules qui va implementer les deux méthodes actualiser() et reInit().
+ */
 public class CellulesIm extends Cellules {
 
+	/**
+	 *	Constructeur qui fait simplement appel au constructeur de la super classe 
+	 */
 	public CellulesIm(int n, int m, int ne){
 		super(n,m,ne);
 	}
 	/**
-	 * Méthode qui permet de modifier la valeur de chaque cellule en fonction de la règle de jeu donnée.
+	 * Méthode qui permet de modifier la valeur de chaque cellule en fonction de la règle de jeu de l'Immigration.
 	 * C'est ce qui est fait entre chaque itération
+	 * La cellule dans l'état e passe à l'état e+1 SSI elle à au moins 3 voisins dans cette état
 	 */
 	public void actualiser (){
 		int voisin = 0;
 		for(int i=0; i<this.getNbL(); i++){
 			for(int k=0;k<this.getNbC(); k++){
 				voisin = this.nbVoisin(i,k);
-				//Cellule dans l'état e passe à l'état e+1 SSI elle à au moins 3 voisins dans cette état
 				//On met ces valeurs dans le tableau tmp pour le moment
 				if( voisin >= 3){
 					this.setTmpCellule(i, k, (this.getCellule(i,k)+1)%this.getNbEtats());
@@ -26,7 +32,7 @@ public class CellulesIm extends Cellules {
 				}
 			}
 		}
-		//Mtn que la grille tmp contient toutes les mise à jours de grille, on va pouvoir faire la copie de tmp dans grille.
+		//Mtn que la grille tmp contient toutes les mises à jours de grille, on va pouvoir faire la copie de tmp dans grille.
 		for(int i=0; i<this.getNbL(); i++){
 			for(int k=0;k<this.getNbC(); k++){
 				this.setCellule(i, k, this.getTmpCellule(i, k));
@@ -34,7 +40,7 @@ public class CellulesIm extends Cellules {
 		}
 	}
 	/**
-	 * Affecte à chaque cellule un état parmi nbEtat de façon aléatoire et équiprobable pour chaque cellule
+	 * Affecte aléatoirement et de façon équiprobable à chaque cellule un état parmi nbEtat pour chaque cellule
 	 */
 	public void reInit(){
 		int c = 0;
@@ -48,7 +54,7 @@ public class CellulesIm extends Cellules {
 		}
 	}
 	/**
-	 * Donne ne nombre de voisin à l'état '(e+1)%nbEtat' de la cellule (i,k) dans l'état 'e'
+	 * Donne le nombre de voisin à l'état '(e+1)%nbEtat' de la cellule (i,k) dans l'état 'e'
 	 * @param i
 	 *      ligne de la cellule
 	 * @param k
@@ -56,6 +62,12 @@ public class CellulesIm extends Cellules {
 	 * @return nombre de voisin dans l'état '(e+1)%nbEtat'
 	 */
 	public int nbVoisin(int i, int k){
+		if (i<1 || i>super.getNbL() ) {
+			throw new RuntimeException("Attention cette ligne n'existe pas ! ");
+		}
+		else if (k<1 || k>super.getNbC() ) {
+			throw new RuntimeException("Attention cette colonne n'existe pas !");
+		}
 		int cpt = 0;
 		int b = i-1;
 		int h = i+1;
