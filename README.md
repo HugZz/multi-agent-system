@@ -14,12 +14,10 @@ Ensimag 2A POO - TP 2015/16
 Execution
 =========
 
-* **compilation** : > make jeuxGUI
-* **lancement** : > make exeJeuxGUI
+* **compilation** : `make jeuxGUI`
+* **lancement** : `make exeJeuxGUI`
 
-> make all
-Permet d'effectuer ces deux opérations à la suite.
+`make all` permet d'effectuer ces deux opérations à la suite.
+`make clean` efface les .class de bin/
 
-> make clean
-Efface les .class de bin/
-
+*Le menu vous laissera choisir parmis les différents jeux.*
