@@ -2,7 +2,7 @@ Ensimag 2A POO - TP 2015/16
 ============================
 
 - src: contient les classes fournies par les enseignants 
-  -> TestGUI.java : cree une fenetre graphique "Invaders", pas de simulation
+  -> TestGUI.java : cree une fenetre graphique "Vide", pas de simulation
   Et c'est tout, en fait!
 
 - bin/gui.jar: archive Java contenant les classes de l'interface graphique. Voir un exemple d'utilisation dans TestGUI.java
@@ -20,4 +20,4 @@ Execution
 `make all` permet d'effectuer ces deux opérations à la suite.
 `make clean` efface les .class de bin/
 
-*Le menu vous laissera choisir parmis les différents jeux.*
+*Le menu vous laissera choisir parmis les différents jeuxi et leur options.*
