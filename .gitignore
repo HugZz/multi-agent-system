@@ -12,3 +12,7 @@
 *.aux
 *.autosave
 *.zip
+*.tex
+*.jpeg
+*.eps
+rapport/UML_Cellules-eps-converted-to.pdf
