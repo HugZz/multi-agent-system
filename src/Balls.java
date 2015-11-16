@@ -10,8 +10,8 @@ public class Balls {
 	/**
 	 * Délimiteur de l'écran
 	 */
-	protected static final int Xmax = 790;
-	protected static final int Ymax = 490;
+	protected static final int Xmax = 990;
+	protected static final int Ymax = 590;
 	protected static final int Xmin = 10;
 	protected static final int Ymin = 10;
 
@@ -44,8 +44,8 @@ public class Balls {
 	 * @param n  nombre de balles à créer
 	 */
 	public void setNbBalls(int n){
-		if (n<1 || n>50) {
-			throw new RuntimeException("Attention le nombre de balles doit être entre [1..500]");
+		if (n<1 || n>500) {
+			throw new RuntimeException("Attention le nombre de balles doit être entre [1..50O]");
 		}
 		else{
 			this.nbBalls = n;
