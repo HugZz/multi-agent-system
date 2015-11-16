@@ -1,7 +1,7 @@
 import java.awt.Point;
 
 import java.util.Random;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * Classe fille de Cellules qui va implementer les deux méthodes actualiser() et reInit().
@@ -14,7 +14,7 @@ public class CellulesSeg extends Cellules {
     /**
      * Liste chainée des logements vacants.
      */
-    private LinkedList<Point> vacants;
+    private ArrayList<Point> vacants;
 
     /**
      * Constructeur : Initialise les paramètres du jeu et la liste chainée.
@@ -26,7 +26,7 @@ public class CellulesSeg extends Cellules {
 	public CellulesSeg(int n, int m, int ne, int k) {
 		super(n,m,ne);
 		this.setK(k);
-        this.setVac(new LinkedList<Point>());
+        this.setVac(new ArrayList<Point>());
 		this.reInit();
 	}
 	
@@ -52,7 +52,7 @@ public class CellulesSeg extends Cellules {
      * @param vacants
      *      on obtient la liste des vacants
      */
-    public LinkedList<Point> getVac(){
+    public ArrayList<Point> getVac(){
         return this.vacants;
     }
 	/**
@@ -60,7 +60,7 @@ public class CellulesSeg extends Cellules {
      * @param vacants
      *      on fixe le paramètre vacants
      */
-    public void setVac(LinkedList<Point> vacants){
+    public void setVac(ArrayList<Point> vacants){
         this.vacants = vacants;
     }
 	/**

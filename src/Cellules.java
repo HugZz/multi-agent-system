@@ -109,7 +109,7 @@ abstract public class Cellules {
 		}
 	}
 	/**
-	 *	Getter à l'attribut nbEtat de Cellules
+	 *	Getter à l'attribut nbEtats de Cellules
 	 */
 	public int getNbEtats(){
 		return this.nbEtats;
@@ -121,7 +121,7 @@ abstract public class Cellules {
 	 * @param k
 	 *      Numero de la colonne dont on désire connaitre l'état
 	 * @param e
-	 *      Nouvelle état de la cellule (i,k) e>1 et e<ne
+	 *      Nouvelle état de la cellule (i,k) [0..ne]
 	 */
 	public void setCellule (int i, int k, int e) {
 		if (i<0 || i>this.getNbL() ) {
@@ -130,7 +130,7 @@ abstract public class Cellules {
 		else if (k<0 || k>this.getNbC() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
-		else if (e<0 || e>this.getNbEtats() ) {
+		else if (e<-1 || e>this.getNbEtats() ) {
 			throw new RuntimeException("Attention l'état doit être uniquement dans [0..nbEtats] !!!");
 		}
 		else{
@@ -171,8 +171,8 @@ abstract public class Cellules {
 		else if (k<0 || k>this.getNbC() ) {
 			throw new RuntimeException("Attention la colonne doit être entre [1..nbC] !!!");
 		}
-		else if (e<0 || e>this.getNbEtats() ) {
-			throw new RuntimeException("Attention l'état doit être uniquement dans [2..nbEtats] !!!");
+		else if (e<-1 || e>this.getNbEtats() ) {
+			throw new RuntimeException("Attention l'état doit être uniquement dans [0..nbEtats] !!!");
 		}
 		else{
 			this.getTmpGrille()[i][k] = e;
